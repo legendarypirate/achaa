@@ -1,0 +1,44 @@
+$breakpoints: (
+  // xs: 320px,
+  // mobile: 768px,
+  // tab-port: 992px,
+  // tab-land: 1400px,
+  // desktop-sm: 1600px,
+  // desktop: 1920px,
+  desktop-md: 1200px,
+  desktop-sm: 1024px,
+  tablet: 768px,
+  mobile: 430px,
+  xs: 320px
+) !default;
+
+// COLORS
+$primary-color: #ea3347;
+$second-color: #00203a;
+$gray-color: #7a7a7a;
+
+// Z INDEXES
+$zIndex: 99999;
+$modal-zIndex: calc(#{$zIndex} - 1);
+$header-zIndex: calc(#{$modal-zIndex} - 1);
+
+// HEADER
+$header-height: 12rem;
+
+//BODY
+$body-back-color: #f7f8fa;
+
+// UI tokens (shared across pages)
+$surface: #ffffff;
+$surface-muted: #f8fafc;
+$border-subtle: #e2e8f0;
+$text-muted: #64748b;
+$radius-sm: 0.55rem;
+$radius-md: 0.9rem;
+$radius-lg: 1.2rem;
+$shadow-soft: 0 0.35rem 1.2rem rgba(15, 23, 42, 0.06);
+$shadow-card: 0 0.5rem 1.8rem rgba(15, 23, 42, 0.08);
+
+// ADMIN
+$admin-menu-width: 30rem;
+$admin-menu-height: 6rem;

@@ -1,0 +1,49 @@
+@import "sass/global";
+
+.adminLogin {
+  height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    width: min(42rem, 92vw);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1.2rem 3rem rgba(15, 23, 42, 0.1);
+    border-radius: 1.6rem;
+    background: #ffffff;
+
+    padding: 2rem 3rem;
+
+    &-logo {
+      width: 18rem;
+    }
+
+    &-loginBtn {
+      background-color: $primary-color;
+      color: white;
+      font-weight: 700;
+
+      border-radius: 1.2rem;
+      border: 1px solid $primary-color;
+
+      width: 100%;
+      padding: 1.2rem 2rem;
+      margin: 1rem 0 0.4rem;
+
+      &:hover {
+        background: #ffffff;
+        color: $primary-color;
+      }
+    }
+  }
+}

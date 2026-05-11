@@ -1,0 +1,56 @@
+@import "sass/global";
+
+.introBanner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &__box {
+    width: 48.8%;
+
+    border: 2px solid gray;
+    border-radius: 1rem;
+
+    padding: 1rem;
+    margin-bottom: 3rem;
+
+    &-title {
+      margin-bottom: 0.6rem;
+    }
+
+    &-saveBtn {
+      width: fit-content;
+
+      background-color: $second-color;
+      color: white;
+
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      border-radius: 1rem;
+
+      margin-top: 0.6rem;
+      padding: 0.4rem 0.8rem;
+
+      svg {
+        vertical-align: middle;
+        margin-left: 0.4rem;
+      }
+
+      &:hover {
+        background-color: white;
+        color: $second-color;
+        border-color: $second-color;
+
+        font-weight: bolder;
+
+        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+        transform: translateY(0);
+      }
+    }
+  }
+}

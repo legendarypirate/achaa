@@ -1,0 +1,117 @@
+@import "sass/global";
+
+.home {
+  display: grid;
+  grid-template-columns: minmax(1.6rem, 1fr) minmax(0, 1200px) minmax(1.6rem, 1fr);
+  grid-template-rows: repeat(6, max-content);
+
+  grid-template-areas:
+    ".            face            ."
+    ".            express         ."
+    "banner       banner          banner"
+    ".            aboutcourse     ."
+    ".            organization    ."
+    "calculator   calculator      calculator";
+
+  row-gap: 8rem;
+  padding-bottom: 8rem;
+
+  @include respondTo(mobile) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, fit-content);
+
+    grid-template-areas:
+      "face"
+      "express"
+      "banner"
+      "aboutcourse"
+      "organization"
+      "calculator";
+  }
+
+  &__face {
+    grid-area: face;
+
+    display: flex;
+    align-items: center;
+    gap: 4.8rem;
+
+    margin-top: 6rem;
+
+    @include respondTo(desktop-sm) {
+      padding: 0 2rem;
+    }
+
+    @include respondTo(tablet) {
+      flex-direction: column;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      @include respondTo(tablet) {
+        align-items: center;
+      }
+
+      &-modalIMG {
+        width: 80rem;
+        @include respondTo(tablet) {
+          width: 50rem;
+        }
+        @include respondTo(mobile) {
+          width: 30rem;
+        }
+      }
+
+      &-title,
+      &-text {
+        @include respondTo(tablet) {
+          text-align: center;
+        }
+      }
+
+      &-title {
+        font-size: 3.4rem;
+        line-height: 1.25;
+      }
+
+      &-link {
+        width: fit-content;
+
+        color: $second-color;
+        font-weight: bold;
+
+        border-radius: 1rem;
+        border: 1px solid black;
+
+        padding: 1rem 3rem;
+
+        &:hover {
+          background-color: $second-color;
+          color: white;
+        }
+      }
+    }
+
+    &-video {
+      width: min(58rem, 100%);
+      height: fit-content;
+      border-radius: 1.4rem;
+      box-shadow: 0 1.2rem 2.8rem rgba(2, 6, 23, 0.12);
+
+      @include respondTo(desktop-sm) {
+        width: 48rem;
+      }
+
+      @include respondTo(tablet) {
+        width: 58rem;
+      }
+
+      @include respondTo(mobile) {
+        width: 26rem;
+      }
+    }
+  }
+}

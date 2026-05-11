@@ -1,0 +1,61 @@
+@import "sass/global";
+
+.allOrganizations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $body-back-color;
+
+  &__container {
+    width: 1140px;
+    margin-top: 8rem;
+
+    @include respondTo(desktop-sm) {
+      width: 100%;
+    }
+
+    &-title {
+      font-size: 3rem;
+      text-align: center;
+
+      @include respondTo(mobile) {
+        font-size: 2.4rem;
+      }
+    }
+
+    &-para {
+      text-align: center;
+      margin-top: 2rem;
+
+      &-text {
+        margin-top: 0.6rem;
+      }
+    }
+
+    &-banners {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+
+      padding: 4rem 0 10rem;
+
+      @include respondTo(desktop-sm) {
+        justify-content: center;
+      }
+
+      &-img {
+        width: 20rem;
+        height: 12rem;
+        border: 1px;
+        border-radius: 1rem;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.06);
+
+        @include respondTo(desktop-sm) {
+          width: 18rem;
+          height: 10rem;
+        }
+      }
+    }
+  }
+}

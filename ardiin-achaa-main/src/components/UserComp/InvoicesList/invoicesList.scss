@@ -1,0 +1,17 @@
+@import "sass/global";
+
+.invoicesList {
+  width: 100%;
+
+  &__heading {
+    border-bottom: 1px solid gray;
+
+    padding: 0.2rem 0 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  &__tableContainer {
+    overflow-x: auto;
+    @include changeScrollbar($height: 0.6rem);
+  }
+}

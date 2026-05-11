@@ -1,0 +1,76 @@
+@import "sass/global";
+
+.fileUplaoder {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  &__label {
+    cursor: pointer;
+
+    width: 12rem;
+    height: 2.4rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: gainsboro;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 0.4rem;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &--top {
+      margin-bottom: 0.4rem;
+    }
+
+    &--bottom {
+      margin-top: 0.4rem;
+    }
+  }
+
+  &__figure {
+    width: 40rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &--avatar {
+      width: 10rem;
+      height: 10rem;
+    }
+
+    &--noIMG {
+      width: 10rem;
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.6rem;
+
+      &--avatar {
+        border-radius: 6rem;
+        border: 1px solid gray;
+
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__video {
+    width: 40rem;
+  }
+}

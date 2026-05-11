@@ -1,0 +1,57 @@
+@import "sass/global";
+
+.tab {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+
+    &-item {
+      cursor: pointer;
+      user-select: none;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      background-color: $second-color;
+      color: white;
+
+      text-align: center;
+
+      border: 1px solid $gray-color;
+      border-radius: 0.6rem 0.6rem 0 0;
+      padding: 1rem 1.8rem;
+
+      img {
+        height: 4rem;
+        margin-bottom: 0.4rem;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &--active {
+        cursor: default;
+
+        background-color: white;
+        color: $second-color;
+
+        font-weight: bolder;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__panel {
+    padding: 1rem;
+
+    border: 1px solid gray;
+    border-radius: 0 0 0.4rem 0.4rem;
+  }
+}

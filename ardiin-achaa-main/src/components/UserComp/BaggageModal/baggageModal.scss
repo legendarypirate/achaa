@@ -1,0 +1,158 @@
+@import "sass/global";
+
+.baggage {
+  &__heading {
+    width: 100%;
+
+    border-bottom: 2px solid gray;
+
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.6rem;
+
+    @include respondTo(desktop-sm) {
+      text-align: center;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+
+    @include respondTo(desktop-sm) {
+      gap: 2rem;
+    }
+
+    &-cell {
+      width: 56rem;
+
+      @include respondTo(desktop-sm) {
+        width: unset;
+      }
+
+      &-infos {
+        margin-bottom: 2rem;
+
+        b {
+          margin-right: 0.4rem;
+        }
+      }
+
+      &-input {
+        display: flex;
+        flex-direction: column;
+
+        margin-bottom: 2rem;
+
+        input,
+        select {
+          width: 30rem;
+
+          @include respondTo(mobile) {
+            width: 100%;
+          }
+        }
+        textarea {
+          max-width: 100%;
+        }
+        input[type="number"] {
+          width: 6rem;
+          text-align: center;
+        }
+
+        label {
+          margin-bottom: 0.4rem;
+
+          p[about="alert"] {
+            display: inline;
+
+            color: red;
+            margin-left: 0.4rem;
+          }
+        }
+
+        figure {
+          @include respondTo(mobile) {
+            width: 100%;
+          }
+        }
+
+        &-list {
+          align-self: flex-start;
+
+          color: black;
+          border: 2px solid $primary-color;
+          border-radius: 1rem;
+
+          padding: 1rem;
+        }
+
+        &-body {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+
+          &[about="where"] {
+            @include respondTo(mobile) {
+              flex-direction: column;
+              align-items: unset;
+            }
+          }
+
+          select[about="where"] {
+            width: fit-content;
+          }
+          select:first-of-type {
+            margin-right: 3rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__footing {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-top: 2rem;
+
+    @include respondTo(mobile) {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    &-helper {
+      @include respondTo(mobile) {
+        text-align: center;
+      }
+
+      b {
+        display: block;
+      }
+
+      &-title {
+        font-size: 2rem;
+      }
+
+      &-text {
+        ul {
+          margin-top: 1rem;
+          margin-left: 2rem;
+
+          @include respondTo(mobile) {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    &-saveBtn {
+      border: 2px solid $primary-color;
+      border-radius: 1rem;
+
+      padding: 1rem 2rem;
+    }
+  }
+}

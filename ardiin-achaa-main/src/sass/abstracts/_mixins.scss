@@ -1,0 +1,98 @@
+@mixin respondTo($breakpoint) {
+  @if map-has-key($map: $breakpoints, $key: $breakpoint) {
+    @media (max-width: map-get($map: $breakpoints, $key: $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin clearfix {
+  backface-visibility: hidden;
+}
+
+@mixin changeScrollbar(
+  $width: 0.8rem,
+  $height: 1rem,
+  $back-color: false,
+  $scroll-color: #c5c5c5
+) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+
+    @if $back-color {
+      background-color: #60cfae;
+    } @else {
+      background-color: transparent;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scroll-color;
+    border-radius: 2rem;
+
+    &:hover {
+      background-color: #b4b4b4;
+    }
+  }
+}
+
+@mixin admin_menu_item {
+  &-link {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    color: black;
+
+    padding: 1rem 1.6rem;
+    margin: 1rem 0;
+
+    &--active {
+      color: dodgerblue;
+    }
+  }
+
+  &:hover {
+    padding-left: 2.6rem;
+    transition: padding 0.2s;
+  }
+}
+
+@mixin iconMiddle($margin-left: 1rem) {
+  vertical-align: middle;
+  margin-left: $margin-left;
+}
+
+@mixin menuItem() {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 6.6rem;
+  padding: 0 5rem;
+  margin: 0.5rem 0;
+  box-shadow: 0 0 0.1rem 0.5rem #efeeee;
+  border-radius: 0.2rem;
+
+  color: rgb(43, 32, 32);
+  background-color: #ffffff;
+
+  font-size: inherit;
+
+  transition: font-weight 0.18s;
+  &:hover {
+    font-weight: bolder;
+    color: rgb(88, 81, 81);
+  }
+}
+
+@mixin primary-btn {
+  border: none;
+  background-color: $primary-color;
+
+  padding: 1rem 2rem;
+}

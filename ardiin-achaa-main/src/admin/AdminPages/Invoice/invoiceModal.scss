@@ -1,0 +1,70 @@
+@import "sass/global";
+
+.invoiceModal {
+  &__heading {
+    border-bottom: 2px solid gray;
+
+    padding: 0 1rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1rem;
+
+    text-align: center;
+  }
+
+  &__content {
+    width: 40rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0 8rem;
+
+    &-input {
+      width: 100%;
+      margin: 2rem 0 0.6rem;
+
+      p {
+        font-weight: bolder;
+        margin-bottom: 0.4rem;
+      }
+
+      textarea {
+        max-width: 100%;
+      }
+    }
+
+    &-sendBtn {
+      width: fit-content;
+
+      background-color: $second-color;
+      color: white;
+
+      border-radius: 1rem;
+      border: 1px solid white;
+
+      padding: 1rem 2rem;
+
+      svg {
+        vertical-align: middle;
+        margin-left: 0.4rem;
+      }
+
+      &:hover {
+        background-color: white;
+        color: $second-color;
+        border-color: $second-color;
+
+        font-weight: bolder;
+
+        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+        transform: translateY(0);
+      }
+    }
+  }
+}

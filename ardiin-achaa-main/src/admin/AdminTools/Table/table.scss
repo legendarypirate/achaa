@@ -1,0 +1,176 @@
+@import "sass/global";
+
+/*~~~~~DEFAULT STYLE~~~~~~~~~~~~~~~~~~~~~~~~~*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+
+    /*Dugaarlaltiin col-iin style-iig oorchilj bn*/
+    &:first-of-type {
+      width: 1rem;
+      text-align: center;
+      font-weight: bolder;
+    }
+
+    &:nth-child(2) {
+      width: 16rem;
+      padding: 0.4rem;
+    }
+
+    &:last-of-type {
+      width: 8rem;
+    }
+  }
+
+  th {
+    background-color: $second-color;
+    color: white;
+    padding: 1.6rem 0.8rem;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+}
+
+/*~~~~~MY STYLE~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.rcTable {
+  &__contentTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: dodgerblue;
+      color: white;
+
+      text-transform: uppercase;
+      font-weight: bolder;
+      letter-spacing: 0.1rem;
+
+      border: 1px solid gray;
+      border-radius: 4rem;
+
+      padding: 0.4rem 1rem;
+      padding-right: 1.4rem;
+    }
+  }
+
+  &__globalFilter {
+    width: 30rem;
+    height: 3rem;
+
+    border-radius: 4rem;
+
+    padding: 0 0.8rem;
+  }
+
+  &__actionsContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    &--disabledButton {
+      justify-content: center;
+    }
+
+    button {
+      height: unset;
+      padding: unset;
+      background-color: unset;
+      border: unset;
+
+      svg {
+        color: dodgerblue;
+      }
+
+      p {
+        padding: 0 0.2rem 0.1rem;
+
+        border: 0.1px solid gray;
+        border-radius: 0.4rem;
+
+        background-color: dodgerblue;
+        color: white;
+      }
+
+      svg,
+      p {
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 1rem;
+
+    &-text {
+      font-weight: bold;
+      margin-right: 2rem;
+    }
+
+    &-btn1 {
+      border: none;
+
+      background-color: white;
+      color: $second-color;
+
+      font-weight: bold;
+      padding: 0.6rem;
+      margin: 0 0.4rem;
+
+      &:hover {
+        background-color: $second-color;
+        color: white;
+
+        border-radius: 1rem;
+      }
+    }
+
+    &-btn2 {
+      border: none;
+      border-radius: 1rem;
+      background-color: rgb(163, 159, 159);
+      color: $second-color;
+
+      font-weight: bold;
+      padding: 0.6rem;
+      margin: 0 0.6rem;
+
+      &:hover {
+        background-color: $second-color;
+        color: white;
+      }
+    }
+  }
+}

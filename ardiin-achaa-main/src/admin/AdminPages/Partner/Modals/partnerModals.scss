@@ -1,0 +1,185 @@
+@import "sass/global";
+
+.partnerModals {
+  width: 800px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /*---number input-iin arrow-iig alga bolj bn---*/
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  /*---------------------------------------------*/
+
+  &__heading {
+    width: 100%;
+
+    border-bottom: 2px solid gray;
+
+    padding: 0 1rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.6rem;
+
+    text-align: center;
+  }
+
+  &__content {
+    b[about="service"] {
+      font-size: 1.6rem;
+      color: $primary-color;
+    }
+    b[about="subtitle"] {
+      font-size: 1.72rem;
+    }
+
+    &-title {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+
+      &:not(:first-of-type) {
+        margin-top: 4rem;
+      }
+    }
+
+    &-card {
+      width: 60rem;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      column-gap: 4rem;
+      row-gap: 2rem;
+
+      &-input {
+        width: 28rem;
+
+        input,
+        select,
+        .fileUplaoder {
+          margin-top: 0.2rem;
+        }
+        input[type="date"] {
+          width: fit-content;
+        }
+
+        input[about="sizes"] {
+          width: 6rem;
+          text-align: center;
+        }
+
+        &-validation {
+          color: red;
+        }
+      }
+
+      &-textarea {
+        display: flex;
+        flex-direction: column;
+
+        margin-top: 4rem;
+
+        textarea {
+          max-width: 60rem;
+          margin-top: 0.4rem;
+        }
+      }
+
+      &-zoneInput {
+        width: 16rem;
+
+        input {
+          margin-top: 0.2rem;
+        }
+      }
+    }
+
+    &-checkBox,
+    &-packType {
+      height: 6rem;
+
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      input[type="checkbox"] {
+        width: unset;
+        margin-right: 0.4rem;
+      }
+    }
+    &-packType {
+      width: 100%;
+      height: 14rem;
+
+      column-gap: 8rem;
+    }
+
+    /*---CrossRoad----------------------------*/
+    &-insurance {
+      input[type="checkbox"] {
+        width: unset;
+        margin-right: 0.4rem;
+      }
+
+      &-item {
+        width: 34rem;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border: 1px solid gray;
+        border-radius: 1rem;
+
+        padding: 1rem;
+
+        &:not(:last-of-type) {
+          margin-bottom: 1rem;
+        }
+
+        @include respondTo(mobile) {
+          width: 100%;
+        }
+      }
+    }
+    /*----------------------------------------*/
+  }
+
+  &__saveBtn {
+    width: fit-content;
+
+    background-color: $second-color;
+    color: white;
+
+    border-radius: 1rem;
+    border: 1px solid white;
+
+    margin-top: 1.6rem;
+    padding: 1rem 2rem;
+
+    svg {
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+
+    &:hover {
+      background-color: white;
+      color: $second-color;
+      border-color: $second-color;
+
+      font-weight: bolder;
+
+      box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      transform: translateY(0);
+    }
+  }
+}

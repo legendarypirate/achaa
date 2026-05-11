@@ -1,0 +1,64 @@
+@import "sass/global";
+
+.dropDown {
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+  margin-left: 0 -1rem;
+
+  border-right: 5px solid transparent;
+
+  @include admin_menu_item;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $primary-color;
+    border-radius: 0.6rem;
+
+    .dropDown__title {
+      color: $primary-color;
+    }
+  }
+
+  &--noClicked {
+    transition: transform ease 0.3s;
+    transform: rotate(0deg);
+  }
+  &--clicked {
+    transition: transform ease 0.3s;
+    transform: rotate(90deg);
+  }
+  &--showed {
+    background-color: #f1f1f1;
+    border-radius: 1.4rem;
+  }
+  &--opened {
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+
+    svg {
+      font-size: 2rem;
+      margin-right: 0.4rem;
+    }
+  }
+
+  &__title {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__content {
+    padding-left: 1rem;
+  }
+}

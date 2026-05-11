@@ -1,0 +1,40 @@
+@import "sass/global";
+
+.myInput {
+  position: relative;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+
+    margin-left: 1rem;
+    color: $primary-color;
+  }
+
+  p {
+    color: #dc2626;
+    margin-top: 0.4rem;
+    font-size: 1.3rem;
+  }
+
+  input,
+  textarea,
+  select {
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    padding: 1.1rem 1.2rem;
+    border-radius: 1.2rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.3rem rgba(234, 51, 71, 0.12);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import "sass/global";
+
+.adminHeader {
+  grid-area: header;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: white;
+  box-shadow: 0 1rem 1.5rem -1rem rgba($color: black, $alpha: 0.1);
+
+  padding: 0 1rem;
+
+  &__heading {
+    font-size: 2rem;
+  }
+
+  &__signoutBtn {
+    @include primary-btn();
+
+    color: white;
+    border-radius: 1rem;
+
+    font-size: 1.2rem;
+    font-weight: bolder;
+  }
+}

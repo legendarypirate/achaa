@@ -1,0 +1,32 @@
+# OS
+.DS_Store
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Local npm cache (backend)
+**/.npm-cache/
+
+# Frontend (Next / legacy)
+ardiin-achaa-main/.next/
+ardiin-achaa-main/out/
+ardiin-achaa-main/build/
+ardiin-achaa-main/build000/
+
+# TypeScript
+*.tsbuildinfo
+ardiin-achaa-main/tsconfig.tsbuildinfo
+
+# Env
+.env
+.env.*.local
+
+# Backend secrets (copy from *.example.js locally; never commit real values)
+backend/secrets/databaseConfiguration.js
+backend/secrets/index.js
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

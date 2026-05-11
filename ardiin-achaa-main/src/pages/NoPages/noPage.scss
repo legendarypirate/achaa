@@ -1,0 +1,47 @@
+@import "sass/global";
+
+.noPage {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 4rem) 1.5rem;
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    max-width: 42rem;
+    width: 100%;
+    padding: clamp(2rem, 5vw, 3rem);
+    border-radius: $radius-lg;
+    text-align: center;
+    color: $surface;
+
+    background: linear-gradient(
+      135deg,
+      $primary-color 0%,
+      darken($primary-color, 6%) 100%
+    );
+    box-shadow: $shadow-card;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &-header {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    &-text {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.5;
+      opacity: 0.95;
+    }
+  }
+}

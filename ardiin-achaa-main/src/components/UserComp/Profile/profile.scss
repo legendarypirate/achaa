@@ -1,0 +1,89 @@
+@import "sass/global";
+
+.profile {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0 0.6rem;
+
+  /*---number input-iin arrow-iig alga bolj bn---*/
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  /*---------------------------------------------*/
+
+  &__heading {
+    width: 100%;
+
+    border-bottom: 1px solid gray;
+
+    padding: 0.2rem 0 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+
+    b {
+      margin-left: 0.6rem;
+    }
+  }
+
+  &__content {
+    margin-top: 1.6rem;
+  }
+
+  &__input {
+    width: 24rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.6rem;
+    }
+
+    &-label {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+  }
+
+  &__saveBtn {
+    width: fit-content;
+
+    background-color: $second-color;
+    color: white;
+
+    border-radius: 1rem;
+    border: 1px solid white;
+
+    margin-top: 1.6rem;
+    padding: 1rem;
+
+    svg {
+      vertical-align: middle;
+
+      font-size: 1.6rem;
+    }
+
+    &:hover {
+      background-color: white;
+      color: $second-color;
+      border-color: $second-color;
+
+      font-weight: bolder;
+
+      box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      transform: translateY(0);
+    }
+  }
+}

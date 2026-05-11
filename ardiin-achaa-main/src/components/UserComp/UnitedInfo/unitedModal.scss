@@ -1,0 +1,45 @@
+@import "sass/global";
+
+.united{
+    &__body{
+        display: flex;
+        gap: 4rem;
+        &-logo{
+            width: 30rem;
+            height: 25rem;
+        }
+        &-info{
+            &-text{
+                padding: 1rem 0;
+            }
+        }
+    }
+    &__rate{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 4rem;
+        &-warn{
+            color: $primary-color;
+            padding: 0.4rem 0;
+        }
+        &-input{
+            width: 7rem;
+            border-radius: 1rem;
+            padding: 0.5rem 0;
+        }
+        &-button{
+            width: 12rem;
+            border-radius: 2rem;
+            padding: 0.5rem 0;
+            font-weight: bold;
+            margin-top: 3rem;
+            border:1px solid $second-color;
+            &:hover{
+                background-color: $second-color;
+                color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@import "sass/global";
+
+.organizaton {
+  grid-area: organization;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include respondTo(mobile) {
+    display: none;
+  }
+
+  &__title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  &__para {
+    text-align: center;
+    margin-top: 2rem;
+
+    &-text {
+      margin-top: 0.6rem;
+    }
+  }
+
+  &__slick {
+    width: 100%;
+
+    padding: 1rem 0;
+
+    @include respondTo(mobile) {
+      width: 80%;
+    }
+
+    &-img {
+      width: 16rem;
+      height: 16rem;
+
+      object-fit: contain;
+
+      border-radius: 2rem;
+      padding: 0 1rem;
+    }
+  }
+
+  &__link {
+    background-color: $primary-color;
+    color: white;
+
+    border: 1px solid white;
+    border-radius: 1rem;
+
+    padding: 1rem 4rem;
+
+    &:hover {
+      background-color: white;
+      color: $primary-color;
+
+      border: 1px solid $primary-color;
+    }
+  }
+}

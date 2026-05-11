@@ -1,0 +1,48 @@
+@import "sass/global";
+
+.banner {
+  grid-area: banner;
+
+  &__main {
+    position: relative;
+
+    height: 30rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include respondTo(mobile) {
+      height: 20rem;
+    }
+
+    &-slider {
+      position: absolute;
+
+      width: 96%;
+      height: 100%;
+
+      @include respondTo(desktop-sm) {
+        width: 94%;
+      }
+      @include respondTo(tablet) {
+        width: 92%;
+      }
+      @include respondTo(mobile) {
+        width: 86%;
+      }
+      @include respondTo(xs) {
+        width: 84%;
+      }
+    }
+
+    &-img {
+      width: 100%;
+      height: 30rem;
+
+      @include respondTo(mobile) {
+        height: 20rem;
+      }
+    }
+  }
+}

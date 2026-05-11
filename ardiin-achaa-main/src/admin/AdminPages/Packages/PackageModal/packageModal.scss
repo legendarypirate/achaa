@@ -1,0 +1,101 @@
+@import "sass/global";
+
+.packageModal {
+  &__userInfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+
+    margin-bottom: 4rem;
+
+    b {
+      margin-right: 0.4rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    &-cell {
+      width: 56rem;
+
+      @include respondTo(desktop-sm) {
+        width: unset;
+      }
+
+      &-infos {
+        margin-bottom: 2rem;
+
+        b {
+          margin-right: 0.4rem;
+        }
+      }
+
+      &-input {
+        display: flex;
+        flex-direction: column;
+
+        margin-bottom: 2rem;
+
+        input,
+        select {
+          width: 30rem;
+        }
+        textarea {
+          max-width: 100%;
+        }
+        input[type="number"] {
+          width: 6rem;
+          text-align: center;
+        }
+
+        label {
+          margin-bottom: 0.4rem;
+
+          p[about="alert"] {
+            display: inline;
+
+            color: red;
+            margin-left: 0.4rem;
+          }
+        }
+
+        &-list {
+          align-self: flex-start;
+
+          color: black;
+          border: 2px solid $primary-color;
+          border-radius: 1rem;
+
+          padding: 1rem;
+        }
+
+        &-body {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+
+          select[about="where"] {
+            width: fit-content;
+          }
+          select:first-of-type {
+            margin-right: 3rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__saveBtn {
+    display: block;
+    margin: 0 auto; // center
+
+    border: 2px solid $primary-color;
+    border-radius: 1rem;
+
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+  }
+}

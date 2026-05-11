@@ -1,0 +1,81 @@
+@import "sass/global";
+
+.userInvoice {
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 2px solid gray;
+    padding-bottom: 0.6rem;
+
+    margin-bottom: 1rem;
+
+    @include respondTo(xs) {
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__content {
+    width: 40rem;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 8rem;
+
+    @include respondTo(tablet) {
+      margin: 0;
+    }
+    @include respondTo(mobile) {
+      width: 26rem;
+    }
+    @include respondTo(xs) {
+      width: 100%;
+    }
+
+    &-img {
+      width: 100%;
+    }
+
+    &-downloadBtn {
+      width: fit-content;
+      margin: 0.4rem auto 2rem; // center
+
+      background-color: $second-color;
+      color: white;
+
+      border-radius: 1rem;
+      border: 1px solid white;
+
+      font-size: 1.4rem;
+
+      padding: 0.4rem 1rem;
+
+      svg {
+        vertical-align: middle;
+        margin-left: 0.4rem;
+      }
+
+      &:hover {
+        background-color: white;
+        color: $second-color;
+        border-color: $second-color;
+
+        font-weight: bolder;
+
+        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+        transform: translateY(0);
+      }
+    }
+  }
+}

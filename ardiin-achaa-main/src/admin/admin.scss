@@ -1,0 +1,26 @@
+@import "sass/global";
+
+.admin {
+  display: grid;
+  grid-template-columns: $admin-menu-width 1fr;
+  grid-template-rows:
+    $admin-menu-height
+    minmax(calc(100vh - #{$admin-menu-height}), 1fr);
+
+  grid-template-areas:
+    "menu   header"
+    "menu   content";
+
+  background-color: $body-back-color;
+
+  &__content {
+    grid-area: content;
+
+    background-color: white;
+    box-shadow: 0 0 1rem 1rem rgba($color: black, $alpha: 0.04);
+    border-radius: 0.4rem;
+
+    margin: 1rem;
+    padding: 1rem;
+  }
+}

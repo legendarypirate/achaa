@@ -1,0 +1,98 @@
+@import "sass/global";
+
+.adminMenu {
+  grid-area: menu;
+
+  position: fixed;
+  overflow-y: auto;
+
+  width: $admin-menu-width;
+  height: 100%;
+
+  background-color: white;
+
+  @include changeScrollbar();
+
+  &__heading {
+    width: 100%;
+
+    padding: 1rem;
+    border-bottom: 1px solid gainsboro;
+
+    &-fig {
+      height: $admin-menu-height;
+
+      display: flex;
+      align-items: center;
+
+      &-logo {
+        height: 100%;
+        margin: 0 0.6rem 0 1rem;
+      }
+
+      &-cap {
+        color: black;
+        font-weight: bolder;
+      }
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+
+      margin-top: 1rem;
+
+      label {
+        font-weight: bolder;
+        margin-right: 0.4rem;
+      }
+
+      &-privateInfo {
+        width: fit-content;
+
+        background-color: $second-color;
+        color: white;
+
+        border-radius: 1rem;
+        border: 1px solid white;
+
+        padding: 0.4rem 1rem;
+        margin-bottom: 1rem;
+
+        svg {
+          vertical-align: middle;
+          margin-left: 0.4rem;
+        }
+
+        &:hover {
+          background-color: white;
+          color: $second-color;
+          border-color: $second-color;
+
+          font-weight: bolder;
+
+          box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  &__item {
+    @include admin_menu_item();
+  }
+
+  &__banner {
+    width: 100%;
+    height: 60rem;
+
+    border-radius: 1rem;
+  }
+}

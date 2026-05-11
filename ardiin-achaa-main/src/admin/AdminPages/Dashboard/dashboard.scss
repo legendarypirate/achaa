@@ -1,0 +1,37 @@
+@import "sass/global";
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 2rem;
+    gap: 2rem;
+
+    &__item {
+      padding: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24rem;
+      height: 10rem;
+
+      border: 1px;
+      border-radius: 2rem;
+      box-shadow: 0 1rem 2rem grey;
+      gap: 1rem;
+
+      &-number {
+        font-size: 4.5rem;
+        color: $primary-color;
+      }
+      &-text {
+        color: $second-color;
+      }
+    }
+  }
+}

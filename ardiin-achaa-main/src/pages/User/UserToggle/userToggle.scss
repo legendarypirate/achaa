@@ -1,0 +1,32 @@
+@import "sass/global";
+
+.userToggle {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: flex-start;
+
+  background-color: rgba($color: gray, $alpha: 0.2);
+  backdrop-filter: blur(0.24rem);
+
+  &__content {
+    width: 60%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $second-color;
+
+    @include respondTo(mobile) {
+      width: fit-content;
+      padding: 0 1rem;
+    }
+  }
+}

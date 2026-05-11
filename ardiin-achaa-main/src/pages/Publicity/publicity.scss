@@ -1,0 +1,92 @@
+@import "sass/global";
+
+.publicity {
+  display: flex;
+  justify-content: center;
+
+  background-color: $body-back-color;
+
+  padding: 6rem 0;
+
+  &__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    color: $second-color;
+
+    &-title {
+      font-size: 3.8rem;
+      text-align: center;
+
+      @include respondTo(xs) {
+        font-size: 2.8rem;
+      }
+    }
+
+    &-text {
+      font-size: 2rem;
+      text-align: center;
+
+      margin: 2rem 0 4rem 0;
+
+      @include respondTo(xs) {
+        font-size: unset;
+      }
+    }
+
+    &-subTitle {
+      font-size: 2.4rem;
+      text-align: center;
+
+      @include respondTo(xs) {
+        font-size: 2rem;
+      }
+    }
+
+    &-images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: clamp(1.25rem, 3vw, 2rem);
+
+      padding: 0;
+      margin-top: 2rem;
+
+      &-fig {
+        position: relative;
+        width: min(100%, 30rem);
+        aspect-ratio: 3 / 2;
+        border-radius: $radius-lg;
+        overflow: hidden;
+        box-shadow: $shadow-card;
+
+        &-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        &-text {
+          position: absolute;
+          bottom: 0;
+
+          color: white;
+          font-size: 2rem;
+
+          padding-left: 1rem;
+          padding-bottom: 0.4rem;
+
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+        }
+      }
+    }
+  }
+}

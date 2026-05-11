@@ -1,0 +1,98 @@
+@import "sass/global";
+
+.transportModal {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: $second-color;
+    font-size: 2rem;
+    border-bottom: 2px solid $second-color;
+    margin-bottom: 3rem;
+    font-weight: bold;
+    padding-bottom: 2rem;
+    &-icon {
+      width: 5rem;
+      color: red;
+    }
+  }
+  &__body {
+    margin-left: 3rem;
+    width: 80rem;
+    row-gap: 2rem;
+    display: grid;
+    grid-template-columns: 40rem 40rem;
+    &__part {
+      &-title {
+        color: $second-color;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      &-input {
+        width: 30rem;
+        height: 4rem;
+        border-radius: 1rem;
+        border: 1px solid $second-color;
+        font-weight: bold;
+      }
+      &-input2 {
+        width: 8rem;
+        height: 4rem;
+        border-radius: 1rem;
+        border: 1px solid $second-color;
+        margin-left: 3rem;
+      }
+      &-input3 {
+        width: 8rem;
+        height: 4rem;
+        border-radius: 1rem;
+        border: 1px solid $second-color;
+        margin-left: 4rem;
+      }
+    }
+  }
+  &__button {
+    margin: 5rem 0;
+    margin-left: 21rem;
+    &-save {
+      width: 15rem;
+      border: 1px solid $second-color;
+      border-radius: 1rem;
+      height: 4rem;
+      font-weight: bold;
+      color: $second-color;
+      &:hover {
+        color: rgb(255, 255, 255);
+        font-weight: bolder;
+        background-color: $second-color;
+        transform: translateY(-1px);
+        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+      }
+      &:active {
+        transform: translateY(0);
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      }
+    }
+    &-cancel {
+      font-weight: bold;
+      width: 15rem;
+      border: 1px solid $second-color;
+      border-radius: 1rem;
+      height: 4rem;
+      margin-left: 4rem;
+      color: $second-color;
+      &:hover {
+        color: rgb(255, 255, 255);
+        font-weight: bolder;
+        background-color: $second-color;
+        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem grey;
+        transform: translateY(-1px);
+      }
+      &:active {
+        transform: translateY(0);
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      }
+    }
+  }
+}
