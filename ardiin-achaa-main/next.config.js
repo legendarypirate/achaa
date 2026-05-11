@@ -10,7 +10,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   sassOptions: {
-    includePaths: [path.join(__dirname, "src")],
+    // So @import "sass/global" resolves to src/sass/global.scss on all platforms
+    includePaths: [path.resolve(__dirname, "src")],
   },
 };
 
