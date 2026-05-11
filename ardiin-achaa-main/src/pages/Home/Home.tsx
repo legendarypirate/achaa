@@ -62,15 +62,20 @@ const Home = () => {
           </Modal>
         </div>
 
-        <video
-          className="home__face-video"
-          ref={videoRef}
-          controls
-          autoPlay
-          loop
-        >
-          <source src={homeVideo} />
-        </video>
+        {homeVideo ? (
+          <video
+            className="home__face-video"
+            ref={videoRef}
+            controls
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          >
+            <source src={homeVideo} />
+          </video>
+        ) : null}
       </div>
 
       <Express />

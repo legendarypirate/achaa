@@ -34,15 +34,16 @@ function App(props) {
   useEffect(() => {
     props.onFetchAuth();
 
-    // /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    //   navigator.userAgent
-    // )
     if (/Android|iPhone/i.test(navigator.userAgent)) {
       setDevice("mobile");
     } else {
       setDevice("web");
     }
-  }, [props]);
+    // Intentionally run once on mount. `[props]` re-ran on every Redux update because
+    // connect() passes a new props object each time, causing endless /accounts/authenticate
+    // requests and a browser tab that never stops "loading".
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const Wrapper = ({ children }) => {
     const location = useLocation();
