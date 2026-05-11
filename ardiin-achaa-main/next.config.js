@@ -11,6 +11,8 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: [path.resolve(__dirname, "src")],
+    // Quieter builds until @use migration (Dart Sass 3 will drop @import)
+    silenceDeprecations: ["import", "global-builtin"],
   },
 };
 

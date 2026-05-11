@@ -9,7 +9,7 @@ import {
   RiAtLine,
 } from "react-icons/ri";
 import Logo from "../../assets/logo.png";
-import Map from "../../assets/map.PNG";
+import Map from "../../assets/map.png";
 
 const FALLBACK_LOGO_URL =
   "https://upload.wikimedia.org/wikipedia/commons/a/ad/Placeholder_no_text.svg";
