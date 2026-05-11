@@ -167,7 +167,10 @@ const SignUpModal = ({ visible, onCancel, setMsgVisible }) => {
         <div className="signUpModal__actions">
           <ReCAPTCHA
             ref={recaptchaRef}
-            sitekey="6LcX0WcgAAAAAIg4RHzMQzQl4JXiJoeUU4AZXfHs"
+            sitekey={
+              process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+              "6LcsoeQsAAAAAGWYBOL_4Idx7Ckr3P67CrPscmfi"
+            }
             onChange={reCaptchaOnChange}
           />
 
