@@ -112,6 +112,7 @@ router.post("/insert", upload.single("imageFile"), (req, res, next) => {
             .then(() => {
               PartnerRateTable.insert({
                 adminID,
+                rate: 0,
                 total_rate: 0,
                 total_people: 0,
               })

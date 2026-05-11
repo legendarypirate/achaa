@@ -47,8 +47,8 @@ class partnerRateTable {
     return new Promise((resolve, reject) => {
       pool.query(
         `SELECT p.name, p.phone, p.email, r.* FROM partner_rate r
-          INNER JOIN partner p ON p.id = r.adminID
-          ORDER BY id DESC`,
+          INNER JOIN partner p ON p.cargo_admin_id = r.cargo_admin_id
+          ORDER BY r.id DESC`,
         [],
         (error, response) => {
           if (error) {

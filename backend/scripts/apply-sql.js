@@ -1,7 +1,8 @@
 /**
  * Apply a .sql file using the same DB config as the app (PG* / DB_* from .env).
  * Usage (from backend/):
- *   node scripts/apply-sql.js migrations/001_accounts.sql
+ *   npm run migrate
+ *   node scripts/apply-sql.js migrations/000_initial_schema.sql
  */
 require("dotenv").config({
   path: require("path").join(__dirname, "../.env"),

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./app",
-    "migrate:accounts": "node scripts/apply-sql.js migrations/001_accounts.sql"
+    "migrate": "node scripts/apply-sql.js migrations/000_initial_schema.sql"
   },
   "author": "",
   "license": "ISC",
