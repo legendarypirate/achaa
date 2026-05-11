@@ -1,3 +1,5 @@
+@use "sass:color" as color;
+
 @import "../../../sass/abstracts/_mixins";
 @import "../../../sass/abstracts/_variables";
 
@@ -112,7 +114,11 @@
   &__card-accent {
     flex: 0 0 0.35rem;
     width: 0.35rem;
-    background: linear-gradient(180deg, $primary-color 0%, darken($primary-color, 8%) 100%);
+    background: linear-gradient(
+      180deg,
+      $primary-color 0%,
+      color.adjust($primary-color, $lightness: -8%) 100%
+    );
     align-self: stretch;
   }
 

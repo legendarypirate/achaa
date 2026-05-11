@@ -1,3 +1,5 @@
+@use "sass:color" as color;
+
 @import "../../sass/abstracts/_mixins";
 @import "../../sass/abstracts/_variables";
 
@@ -42,7 +44,11 @@
     grid-template-columns: minmax(1.2rem, 1fr) minmax(0, 1200px) minmax(1.2rem, 1fr);
     grid-template-rows: 4.2rem;
     grid-template-areas: ".  top   .";
-    background: linear-gradient(180deg, darken($second-color, 2%) 0%, $second-color 100%);
+    background: linear-gradient(
+      180deg,
+      color.adjust($second-color, $lightness: -2%) 0%,
+      $second-color 100%
+    );
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 

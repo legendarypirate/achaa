@@ -3,9 +3,7 @@ const path = require("path");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // Next.js 16+: `eslint` in next.config is invalid — run ESLint via eslint.config.* / CI if needed.
   typescript: {
     ignoreBuildErrors: true,
   },
