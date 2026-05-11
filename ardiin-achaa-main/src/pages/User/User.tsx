@@ -19,6 +19,7 @@ import {
 import NoFile from "../../assets/no-file.jpg";
 import NoImage from "../../assets/no-image.jpg";
 import Axios from "../../Axios";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
 
 import EnableMembership from "../../components/UserComp/EnableMembership/EnableMembership";
 import ConfirmedUser from "../../components/UserComp/ConfirmedUser/ConfirmedUser";
@@ -67,7 +68,11 @@ const User = () => {
       setUserCode(data.user_code);
       setMembership(data.membership);
       setConfirm(data.confirm);
-      setImage(data.image);
+      setImage(
+        typeof data.image === "string"
+          ? data.image
+          : staticAssetUrl(data.image)
+      );
     });
 
     Axios.get("/introBanner/getByType/banner").then((res) => {
@@ -75,7 +80,7 @@ const User = () => {
       if (typeof url === "string" && url.length > 0) {
         setBanner(url);
       } else {
-        setBanner(NoImage);
+        setBanner(staticAssetUrl(NoImage));
       }
     });
   }, [id]);
@@ -319,11 +324,11 @@ const User = () => {
         <div className="user__menu-heading">
           <img
             className="user__menu-heading-avatar"
-            src={image ? image : NoImage}
+            src={image ? image : staticAssetUrl(NoImage)}
             alt=""
             onError={(e) => {
               e.currentTarget.onerror = null;
-              e.currentTarget.src = NoFile;
+              e.currentTarget.src = staticAssetUrl(NoFile);
             }}
           />
 
@@ -352,11 +357,15 @@ const User = () => {
 
       <img
         className="user__banner"
-        src={typeof banner === "string" && banner ? banner : NoImage}
+        src={
+          typeof banner === "string" && banner
+            ? banner
+            : staticAssetUrl(NoImage)
+        }
         alt=""
         onError={(e) => {
           e.currentTarget.onerror = null;
-          e.currentTarget.src = NoImage;
+          e.currentTarget.src = staticAssetUrl(NoImage);
         }}
       />
 

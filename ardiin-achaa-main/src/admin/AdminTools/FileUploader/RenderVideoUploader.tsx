@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useEffect, useRef } from "react";
 import NoFile from "../../../assets/no-file.jpg";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 
 export const RenderVideoUploader = ({
   center,
@@ -14,6 +15,8 @@ export const RenderVideoUploader = ({
   useEffect(() => {
     videoRef.current?.load();
   }, [currentFile]);
+
+  const mediaSrc = staticAssetUrl(currentFile) || staticAssetUrl(NoFile);
 
   return (
     <div
@@ -37,17 +40,17 @@ export const RenderVideoUploader = ({
 
       {haveFile ? (
         <video className="fileUplaoder__video" ref={videoRef} controls muted>
-          <source src={currentFile} />
+          <source src={typeof currentFile === "string" ? currentFile : mediaSrc} />
         </video>
       ) : (
         <figure className="fileUplaoder__figure fileUplaoder__figure--noIMG">
           <img
             className="fileUplaoder__figure-img"
-            src={currentFile}
-            alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
-            onError={(event) => {
-              event.target.onerror = null;
-              event.target.src = NoFile;
+            src={mediaSrc}
+            alt=""
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = staticAssetUrl(NoFile);
             }}
           />
         </figure>

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import NoFile from "../../../assets/no-file.jpg";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 
 export const RenderImageUploader = ({
   avatar,
@@ -11,6 +12,13 @@ export const RenderImageUploader = ({
   imgWidth,
   handleFileChanger,
 }) => {
+  const imgSrc =
+    staticAssetUrl(currentFile) || staticAssetUrl(NoFile);
+  const fileLabel =
+    typeof File !== "undefined" && currentFile instanceof File
+      ? currentFile.name
+      : null;
+
   return (
     <div
       className="fileUplaoder"
@@ -33,7 +41,7 @@ export const RenderImageUploader = ({
         </label>
       )}
 
-      {currentFile.name}
+      {fileLabel}
 
       <figure
         style={{ width: imgWidth }}
@@ -45,11 +53,11 @@ export const RenderImageUploader = ({
           className={`fileUplaoder__figure-img ${
             avatar && "fileUplaoder__figure-img--avatar"
           }`}
-          src={currentFile}
-          alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
-          onError={(event) => {
-            event.target.onerror = null;
-            event.target.src = NoFile;
+          src={imgSrc}
+          alt=""
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = staticAssetUrl(NoFile);
           }}
         />
       </figure>
