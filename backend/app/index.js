@@ -31,8 +31,16 @@ app.use(
 );
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "build")));
+// Uploaded / public files only (not the old CRA build — frontend is Next on PORT 3000).
 app.use("/static", express.static(path.join(__dirname, "../assets")));
+
+app.get("/", (req, res) => {
+  res.type("json").send({
+    ok: true,
+    service: "ardiin-achaa-backend",
+    hint: "REST API is under /backend/* (e.g. /backend/accounts).",
+  });
+});
 
 app.use("/backend/pay", qpayRoute);
 app.use("/backend/accounts", accountsRoute);
@@ -48,12 +56,6 @@ app.use("/backend/partnerCrossRoad", partnerCrossRoadRoute);
 app.use("/backend/partnerRate", partnerRateRoute);
 app.use("/backend/transport", transportRoute);
 app.use("/backend/invoice", invoiceRoute);
-
-/*~~~ Бүх route-ын доор бх ёстой ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`LISTENING ON PORT ${PORT}`);
