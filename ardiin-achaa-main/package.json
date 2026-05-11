@@ -22,11 +22,11 @@
     "html-react-parser": "^1.4.13",
     "lucide-react": "^1.14.0",
     "moment": "^2.29.2",
-    "next": "^12.3.4",
+    "next": "16.2.6",
     "postcss": "^8.5.14",
-    "react": "^17.0.2",
+    "react": "^18.3.1",
     "react-chartjs-2": "^4.1.0",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.3.1",
     "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.3.1",
     "react-jwt": "^1.1.6",
@@ -69,8 +69,8 @@
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "typescript": "^6.0.3"
   }
 }

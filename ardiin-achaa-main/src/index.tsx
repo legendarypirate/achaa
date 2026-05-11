@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 // REDUX
@@ -21,12 +21,14 @@ const reducers = combineReducers({
 
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-
-  document.getElementById("root")
-);
+const rootEl = document.getElementById("root");
+if (rootEl) {
+  const root = createRoot(rootEl);
+  root.render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  );
+}
