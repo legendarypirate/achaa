@@ -26,6 +26,13 @@ ardiin-achaa-main/tsconfig.tsbuildinfo
 backend/secrets/databaseConfiguration.js
 backend/secrets/index.js
 
+# TLS private material (deploy from secure storage only)
+backend/ssl/PrivateKey.key
+backend/ssl/privkey.pem
+backend/ssl/cert.pem
+backend/ssl/chain.pem
+backend/ssl/MyRequest.csr
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
