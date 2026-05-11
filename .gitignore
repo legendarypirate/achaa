@@ -22,9 +22,7 @@ ardiin-achaa-main/tsconfig.tsbuildinfo
 .env
 .env.*.local
 
-# Backend secrets (copy from *.example.js locally; never commit real values)
-backend/secrets/databaseConfiguration.js
-backend/secrets/index.js
+# Backend secrets are loaded from env (see backend/secrets/*.js). Use .env locally (gitignored).
 
 # TLS private material (deploy from secure storage only)
 backend/ssl/PrivateKey.key
