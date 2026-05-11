@@ -1,6 +1,6 @@
 // @ts-nocheck
+import "../src/admin/shadcn/globals.css";
 import "../src/app.scss";
-import "../src/admin/AdminPages/AdminLogin/adminLogin.scss";
 import "../src/admin/AdminPages/Academy/academyModal.scss";
 import "../src/admin/AdminPages/Dashboard/dashboard.scss";
 import "../src/admin/AdminPages/Dashboard/PieChart/pieChart.scss";
@@ -13,16 +13,11 @@ import "../src/admin/AdminPages/Partner/Modals/partnerModals.scss";
 import "../src/admin/AdminPages/Publicity/publicityModal.scss";
 import "../src/admin/AdminPages/Transport/transportModal.scss";
 import "../src/admin/AdminPages/User/userModal.scss";
-import "../src/admin/AdminTools/AdminHeader/adminHeader.scss";
-import "../src/admin/AdminTools/AdminMenu/adminMenu.scss";
 import "../src/admin/AdminTools/AdminMenu/CompanyProfileModal/companyProfileModal.scss";
-import "../src/admin/AdminTools/AdminMenu/DropDown/dropDown.scss";
 import "../src/admin/AdminTools/CKeditor/ckeditor.scss";
-import "../src/admin/AdminTools/DropDown/dropDown.scss";
 import "../src/admin/AdminTools/FileUploader/fileUploader.scss";
 import "../src/admin/AdminTools/Table/columnFilter.scss";
 import "../src/admin/AdminTools/Table/table.scss";
-import "../src/admin/admin.scss";
 import "../src/components/HomeComp/AboutCourse/aboutcourse.scss";
 import "../src/components/HomeComp/Banner/banner.scss";
 import "../src/components/HomeComp/Calculator/calculator.scss";

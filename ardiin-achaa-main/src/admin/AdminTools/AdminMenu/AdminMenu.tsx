@@ -9,12 +9,14 @@ import Axios from ".././../../Axios";
 import { ROUTES } from "../../routes";
 import DropDown from "./DropDown/DropDown";
 import CompanyProfileModal from "./CompanyProfileModal/CompanyProfileModal";
-
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const AdminMenu = ({ setProfileVisible }) => {
   const { id } = useParams();
   const [data, setData] = useState({});
-  const [banner, setBanner] = useState({});
+  const [banner, setBanner] = useState("");
 
   const [privateModalVisible, setPrivateModalVisible] = useState(false);
 
@@ -24,10 +26,11 @@ const AdminMenu = ({ setProfileVisible }) => {
     });
 
     Axios.get("/introBanner/getByType/banner").then((res) => {
-      if (res.data.file_url) {
-        setBanner(res.data.file_url);
+      const url = res.data && res.data.file_url;
+      if (typeof url === "string" && url.length > 0) {
+        setBanner(url);
       } else {
-        setBanner(NoImage);
+        setBanner(staticAssetUrl(NoImage));
       }
     });
   }, [id]);
@@ -44,63 +47,61 @@ const AdminMenu = ({ setProfileVisible }) => {
 
   const renderHeading = () => {
     return (
-      <div className="adminMenu__heading">
-        <figure className="adminMenu__heading-fig">
-          {id > 0 ? (
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <RiUserFill
-                style={{
-                  fontSize: 48,
-                  backgroundColor: "gainsboro",
-                  border: "1px solid gray",
-                  borderRadius: 48,
-                  padding: 4,
-                }}
-              />
+      <div className="border-b bg-card px-4 py-5">
+        <div className="flex flex-col items-center gap-3 text-center">
+          {Number(id) > 0 ? (
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border bg-muted text-muted-foreground">
+              <RiUserFill className="h-9 w-9" aria-hidden />
             </div>
           ) : (
             <>
               <img
-                className="adminMenu__heading-fig-logo"
-                src={Logo}
-                alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
+                className="h-14 w-auto object-contain"
+                src={staticAssetUrl(Logo)}
+                alt="Ардын ачаа"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.style.display = "none";
+                }}
               />
-              <figcaption className="adminMenu__heading-fig-cap">
-                Ардын ачаа
-              </figcaption>
+              <p className="text-sm font-semibold tracking-tight">Ардын ачаа</p>
             </>
           )}
-        </figure>
+        </div>
 
-        {id > 0 && (
-          <div className="adminMenu__heading-info">
-            <p className="adminMenu__heading-info-name">
-              <label>Нэр:</label>
-              {!data.name || data.name === "0" ? "Хувь хүн" : data.name}
+        {Number(id) > 0 && (
+          <div className="mt-4 space-y-3 text-left text-sm">
+            <p>
+              <span className="font-medium text-muted-foreground">Нэр:</span>{" "}
+              <span className="text-foreground">
+                {!data.name || data.name === "0" ? "Хувь хүн" : data.name}
+              </span>
             </p>
-
-            <p className="adminMenu__heading-info-operation">
-              <label>Үйл ажиллагаа:</label>
-              {activityViewer()}
+            <p>
+              <span className="font-medium text-muted-foreground">
+                Үйл ажиллагаа:
+              </span>{" "}
+              <span className="text-foreground">{activityViewer() || "—"}</span>
             </p>
-
-            <p className="adminMenu__heading-info-signedDate">
-              <label>Бүртгүүлсэн өдөр:</label>
-              {moment(data.signed_date).format("YYYY/MM/DD")}
+            <p>
+              <span className="font-medium text-muted-foreground">
+                Бүртгүүлсэн:
+              </span>{" "}
+              <span className="text-foreground">
+                {data.signed_date
+                  ? moment(data.signed_date).format("YYYY/MM/DD")
+                  : "—"}
+              </span>
             </p>
-
-            <button
-              className="adminMenu__heading-info-privateInfo"
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className="w-full"
               onClick={() => setPrivateModalVisible(true)}
             >
               Компанийн танилцуулга оруулах
-            </button>
+            </Button>
           </div>
         )}
       </div>
@@ -124,12 +125,15 @@ const AdminMenu = ({ setProfileVisible }) => {
         );
       } else {
         return (
-          <li key={index} className="adminMenu__item">
+          <li key={index} className="list-none">
             <NavLink
-              className={(navData) =>
-                navData.isActive
-                  ? "adminMenu__item-link adminMenu__item-link--active"
-                  : "adminMenu__item-link"
+              className={({ isActive }) =>
+                [
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  isActive
+                    ? "bg-primary text-primary-foreground shadow"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                ].join(" ")
               }
               to={`/admin/${id}${item.uri}`}
             >
@@ -142,7 +146,10 @@ const AdminMenu = ({ setProfileVisible }) => {
   };
 
   return (
-    <aside className="adminMenu" onClick={() => setProfileVisible(false)}>
+    <aside
+      className="sticky top-0 flex h-screen w-[260px] shrink-0 flex-col border-r bg-card shadow-sm"
+      onClick={() => setProfileVisible(false)}
+    >
       <CompanyProfileModal
         accountID={id}
         visible={privateModalVisible}
@@ -151,10 +158,32 @@ const AdminMenu = ({ setProfileVisible }) => {
 
       {renderHeading()}
 
-      <ul className="adminMenu__container">{renderItem()}</ul>
+      <nav className="flex-1 overflow-y-auto px-2 py-3">
+        <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Цэс
+        </p>
+        <ul className="space-y-1">{renderItem()}</ul>
+      </nav>
 
-      {id > 0 && (
-        <img className="adminMenu__banner" src={banner} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} />
+      {Number(id) > 0 && (
+        <>
+          <Separator />
+          <div className="p-3">
+            <img
+              className="max-h-48 w-full rounded-lg object-cover"
+              src={
+                typeof banner === "string" && banner
+                  ? banner
+                  : staticAssetUrl(NoImage)
+              }
+              alt=""
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = staticAssetUrl(NoImage);
+              }}
+            />
+          </div>
+        </>
       )}
     </aside>
   );

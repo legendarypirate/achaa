@@ -5,7 +5,6 @@ import { ROUTES } from "./routes";
 import AdminMenu from "./AdminTools/AdminMenu/AdminMenu";
 import AdminHeader from "./AdminTools/AdminHeader/AdminHeader";
 
-
 const Admin = () => {
   const { id } = useParams();
   const [profileVisible, setProfileVisible] = useState(false);
@@ -35,26 +34,36 @@ const Admin = () => {
   };
 
   return (
-    <div className="admin">
-      <AdminHeader
-        profileVisible={profileVisible}
-        setProfileVisible={setProfileVisible}
-      />
-      <AdminMenu
-        profileVisible={profileVisible}
-        setProfileVisible={setProfileVisible}
-      />
-
-      <main className="admin__content" onClick={() => setProfileVisible(false)}>
-        <Routes>
-          <Route
-            path="/"
-            element={<Navigate to={`/admin/${id}/dashboard`} />}
+    <div
+      id="admin-shadcn-root"
+      className="min-h-screen bg-muted/30 text-foreground antialiased"
+    >
+      <div className="flex min-h-screen w-full">
+        <AdminMenu
+          profileVisible={profileVisible}
+          setProfileVisible={setProfileVisible}
+        />
+        <div className="flex min-w-0 flex-1 flex-col">
+          <AdminHeader
+            profileVisible={profileVisible}
+            setProfileVisible={setProfileVisible}
           />
-
-          {renderRoutes()}
-        </Routes>
-      </main>
+          <main
+            className="flex-1 overflow-auto p-4 md:p-6"
+            onClick={() => setProfileVisible(false)}
+          >
+            <div className="mx-auto max-w-[1600px] rounded-xl border bg-card p-4 shadow-sm md:p-6">
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Navigate to={`/admin/${id}/dashboard`} />}
+                />
+                {renderRoutes()}
+              </Routes>
+            </div>
+          </main>
+        </div>
+      </div>
     </div>
   );
 };

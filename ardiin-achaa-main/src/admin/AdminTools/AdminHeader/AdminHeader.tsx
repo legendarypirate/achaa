@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import Modal from "../../../tools/Modal/Modal";
-
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { LogOut } from "lucide-react";
 
 const AdminHeader = () => {
   const { id } = useParams();
@@ -62,7 +64,7 @@ const AdminHeader = () => {
   };
 
   return (
-    <header className="adminHeader">
+    <header className="sticky top-0 z-20 border-b bg-background/90 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <Modal
         visible={modalVisible}
         type="alert"
@@ -71,11 +73,27 @@ const AdminHeader = () => {
         onCancel={modalHandeleCancel}
       />
 
-      <h3 className="adminHeader__heading">{headingOnChecker()}</h3>
-
-      <button className="adminHeader__signoutBtn" onClick={signouBtnOnClick}>
-        Гарах
-      </button>
+      <div className="flex h-14 items-center justify-between gap-4 px-4 md:px-6">
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-lg font-semibold tracking-tight text-foreground md:text-xl">
+            {headingOnChecker()}
+          </p>
+          <p className="truncate text-xs text-muted-foreground md:text-sm">
+            Удирдлагын самбар
+          </p>
+        </div>
+        <Separator orientation="vertical" className="hidden h-8 md:block" />
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="shrink-0 gap-2"
+          onClick={signouBtnOnClick}
+        >
+          <LogOut className="h-4 w-4" aria-hidden />
+          <span className="hidden sm:inline">Гарах</span>
+        </Button>
+      </div>
     </header>
   );
 };
