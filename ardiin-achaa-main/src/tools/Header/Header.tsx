@@ -9,6 +9,7 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import { BiSearch, BiMenu } from "react-icons/bi";
 
 import Axios from "../../Axios";
+import { TRANSPARENT_PIXEL_GIF } from "../../constants/media";
 import Logo from "../../assets/logo.png";
 import Modal from "../Modal/Modal";
 import HeaderDrawerToggle from "./HeaderDrawerToggle/HeaderDrawerToggle";
@@ -234,8 +235,14 @@ const Header = ({ userID, auth }) => {
               className="header__down-logo"
               alt="E-Achaa"
               onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = FALLBACK_LOGO_URL;
+                const el = e.currentTarget;
+                if (el.dataset.imgErr === "1") {
+                  el.onerror = null;
+                  el.src = TRANSPARENT_PIXEL_GIF;
+                  return;
+                }
+                el.dataset.imgErr = "1";
+                el.src = FALLBACK_LOGO_URL;
               }}
             />
           </Link>

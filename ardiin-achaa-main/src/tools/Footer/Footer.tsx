@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from "react";
+import { TRANSPARENT_PIXEL_GIF } from "../../constants/media";
 import {
   RiFacebookCircleFill,
   RiTwitterFill,
@@ -25,8 +26,14 @@ const Footer = () => {
         src={Map}
         alt="no file"
         onError={(e) => {
-          e.currentTarget.onerror = null;
-          e.currentTarget.src = FALLBACK_MAP_URL;
+          const el = e.currentTarget;
+          if (el.dataset.imgErr === "1") {
+            el.onerror = null;
+            el.src = TRANSPARENT_PIXEL_GIF;
+            return;
+          }
+          el.dataset.imgErr = "1";
+          el.src = FALLBACK_MAP_URL;
         }}
       />
 
@@ -37,8 +44,14 @@ const Footer = () => {
             src={Logo}
             alt="no file"
             onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = FALLBACK_LOGO_URL;
+              const el = e.currentTarget;
+              if (el.dataset.imgErr === "1") {
+                el.onerror = null;
+                el.src = TRANSPARENT_PIXEL_GIF;
+                return;
+              }
+              el.dataset.imgErr = "1";
+              el.src = FALLBACK_LOGO_URL;
             }}
           />
           <h3 className="footer__social-heading-text">"Ардын ачаа нэгдэл"</h3>

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import { Link } from "react-router-dom";
+import { TRANSPARENT_PIXEL_GIF } from "../../../constants/media";
 import TeeverZuuch from "../../../assets/expressBack/teever-zuuch.png";
 import ChingelegTeever from "../../../assets/expressBack/chingeleg-teever.png";
 import TomorZam from "../../../assets/expressBack/tomor-zam.png";
@@ -72,8 +73,17 @@ const Express = () => {
                 alt=""
                 loading="lazy"
                 onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = item.fallback;
+                  const el = e.currentTarget;
+                  // Primary failed → try remote fallback once. If that fails too (CSP,
+                  // firewall, adblock), stop with an inert data URI so the tab does not
+                  // hammer Unsplash on every error / remount.
+                  if (el.dataset.imgErr === "1") {
+                    el.onerror = null;
+                    el.src = TRANSPARENT_PIXEL_GIF;
+                    return;
+                  }
+                  el.dataset.imgErr = "1";
+                  el.src = item.fallback;
                 }}
               />
             </div>
