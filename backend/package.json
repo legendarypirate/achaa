@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./app",
-    "migrate": "node scripts/apply-sql.js migrations/000_initial_schema.sql"
+    "migrate": "node scripts/apply-sql.js migrations/000_initial_schema.sql",
+    "create-admin": "node scripts/create-admin.js"
   },
   "author": "",
   "license": "ISC",
