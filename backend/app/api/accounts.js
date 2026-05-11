@@ -152,7 +152,6 @@ router.post("/login", (req, res, next) => {
         throw new Error("Буруу цахим шуудан");
       }
     })
-    .then(({ message }) => res.json({ message }))
     .catch((error) => next(error));
 });
 

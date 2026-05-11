@@ -45,7 +45,9 @@ const User = () => {
   const [confirm, setConfirm] = useState(false);
   const [image, setImage] = useState("");
 
-  const [banner, setBanner] = useState({});
+  // Must be a string (or empty). An object {} becomes src "[object Object]" → browser
+  // requests /user/<id>/[object Object] relative to the current route (looks like a loop).
+  const [banner, setBanner] = useState("");
 
   const [showModal, setShowModal] = useState(false);
   const [showCubic, setShowCubic] = useState(false);
@@ -69,8 +71,9 @@ const User = () => {
     });
 
     Axios.get("/introBanner/getByType/banner").then((res) => {
-      if (res.data.file_url) {
-        setBanner(res.data.file_url);
+      const url = res.data && res.data.file_url;
+      if (typeof url === "string" && url.length > 0) {
+        setBanner(url);
       } else {
         setBanner(NoImage);
       }
@@ -317,10 +320,10 @@ const User = () => {
           <img
             className="user__menu-heading-avatar"
             src={image ? image : NoImage}
-            alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
-            onError={(event) => {
-              event.target.onerror = null;
-              event.target.src = NoFile;
+            alt=""
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = NoFile;
             }}
           />
 
@@ -347,7 +350,15 @@ const User = () => {
         {renderMenu()}
       </div>
 
-      <img className="user__banner" src={banner} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} />
+      <img
+        className="user__banner"
+        src={typeof banner === "string" && banner ? banner : NoImage}
+        alt=""
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = NoImage;
+        }}
+      />
 
       <div className="user__content">
         <Routes>
