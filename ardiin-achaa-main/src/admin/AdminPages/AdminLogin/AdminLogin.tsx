@@ -71,20 +71,18 @@ const AdminLogin = () => {
   };
 
   return (
-    <div
-      id="admin-shadcn-root"
-      className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-foreground"
-    >
-      <Modal
-        type={messageType}
-        text={messageText}
-        visible={messageVisible}
-        onOk={messageHandleOK}
-        onCancel={() => setMessageVisible(false)}
-        disableCloseBtn={false}
-      />
+    <div id="admin-shadcn-root">
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-foreground">
+        <Modal
+          type={messageType}
+          text={messageText}
+          visible={messageVisible}
+          onOk={messageHandleOK}
+          onCancel={() => setMessageVisible(false)}
+          disableCloseBtn={false}
+        />
 
-      <div className="flex min-h-screen items-center justify-center p-4">
+        <div className="flex min-h-screen items-center justify-center p-4">
         <Card className="w-full max-w-md border-slate-800/80 bg-card/95 shadow-2xl backdrop-blur">
           <CardHeader className="space-y-4 text-center">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
@@ -143,6 +141,7 @@ const AdminLogin = () => {
             </CardFooter>
           </form>
         </Card>
+        </div>
       </div>
     </div>
   );

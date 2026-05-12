@@ -47,7 +47,7 @@ const AdminMenu = ({ setProfileVisible }) => {
 
   const renderHeading = () => {
     return (
-      <div className="border-b bg-card px-4 py-5">
+      <div className="border-b border-slate-200 bg-slate-50/80 px-4 py-5">
         <div className="flex flex-col items-center gap-3 text-center">
           {Number(id) > 0 ? (
             <div className="flex h-16 w-16 items-center justify-center rounded-full border bg-muted text-muted-foreground">
@@ -147,7 +147,7 @@ const AdminMenu = ({ setProfileVisible }) => {
 
   return (
     <aside
-      className="sticky top-0 flex h-screen w-[260px] shrink-0 flex-col border-r bg-card shadow-sm"
+      className="sticky top-0 flex h-screen w-[260px] shrink-0 flex-col border-r border-slate-200 bg-white text-slate-900 shadow-sm"
       onClick={() => setProfileVisible(false)}
     >
       <CompanyProfileModal

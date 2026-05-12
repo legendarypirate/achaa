@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  // Scope utilities so the rest of the CRA/SCSS site is unaffected
-  important: "#admin-shadcn-root",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",

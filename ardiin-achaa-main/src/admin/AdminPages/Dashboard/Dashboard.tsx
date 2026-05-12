@@ -1,57 +1,25 @@
 // @ts-nocheck
 import React from "react";
-// import PieChart from "./PieChart/PieChart";
 
+const STATS = [
+  { value: "5", label: "Ирсэн тээврийн саналууд" },
+  { value: "3", label: "Нийт ажилт хийлгэсэн тоо" },
+  { value: "218", label: "Нийт хүлээн авсан ачаа барааны м3" },
+  { value: "2", label: "Ирсэн нэхэмжлэл" },
+  { value: "327", label: "Нийт бүртгэлтэй ачаа барааны м3" },
+  { value: "58", label: "Хамтран ажиллаж байгаа компани" },
+];
 
 const Dashboard = () => {
   return (
-    <div className="dashboard">
-      {/* <div className="dashboard__type">
-        <h3>Барааны төрөл</h3>
-
-        <PieChart />
-      </div> */}
-
+    <div className="dashboard w-full">
       <div className="dashboard__box">
-        <div className="dashboard__box__item">
-          <div className="dashboard__box__item-number">5</div>
-          <div className="dashboard__box__item-text">
-            Ирсэн тээврийн саналууд
+        {STATS.map((row) => (
+          <div key={row.label} className="dashboard__box__item">
+            <div className="dashboard__box__item-number">{row.value}</div>
+            <div className="dashboard__box__item-text">{row.label}</div>
           </div>
-        </div>
-
-        <div className="dashboard__box__item">
-          <div className="dashboard__box__item-number">3</div>
-          <div className="dashboard__box__item-text">
-            Нийт ажилт хийлгэсэн тоо
-          </div>
-        </div>
-
-        <div className="dashboard__box__item">
-          <div className="dashboard__box__item-number">218</div>
-          <div className="dashboard__box__item-text">
-            Нийт хүлээн авсан ачаа барааны м3
-          </div>
-        </div>
-
-        <div className="dashboard__box__item">
-          <div className="dashboard__box__item-number">2</div>
-          <div className="dashboard__box__item-text">Ирсэн нэхэмжлэл</div>
-        </div>
-
-        <div className="dashboard__box__item">
-          <div className="dashboard__box__item-number">327</div>
-          <div className="dashboard__box__item-text">
-            Нийт бүртгэлтэй ачаа барааны м3
-          </div>
-        </div>
-
-        <div className="dashboard__box__item">
-          <div className="dashboard__box__item-number">58</div>
-          <div className="dashboard__box__item-text">
-            Хамтран ажиллаж байгаа компани
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

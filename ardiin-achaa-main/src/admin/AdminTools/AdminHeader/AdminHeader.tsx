@@ -64,7 +64,7 @@ const AdminHeader = () => {
   };
 
   return (
-    <header className="sticky top-0 z-20 border-b bg-background/90 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/75">
+    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <Modal
         visible={modalVisible}
         type="alert"

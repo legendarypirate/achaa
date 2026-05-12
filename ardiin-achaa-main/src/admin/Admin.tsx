@@ -34,25 +34,22 @@ const Admin = () => {
   };
 
   return (
-    <div
-      id="admin-shadcn-root"
-      className="min-h-screen bg-muted/30 text-foreground antialiased"
-    >
-      <div className="flex min-h-screen w-full">
+    <div id="admin-shadcn-root">
+      <div className="flex min-h-screen w-full bg-slate-100 text-slate-900 antialiased">
         <AdminMenu
           profileVisible={profileVisible}
           setProfileVisible={setProfileVisible}
         />
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col">
           <AdminHeader
             profileVisible={profileVisible}
             setProfileVisible={setProfileVisible}
           />
           <main
-            className="flex-1 overflow-auto p-4 md:p-6"
+            className="flex min-h-0 flex-1 flex-col overflow-auto p-4 md:p-6"
             onClick={() => setProfileVisible(false)}
           >
-            <div className="mx-auto max-w-[1600px] rounded-xl border bg-card p-4 shadow-sm md:p-6">
+            <div className="mx-auto w-full max-w-[1600px] flex-1 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm md:p-6">
               <Routes>
                 <Route
                   path="/"
