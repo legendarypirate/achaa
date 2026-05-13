@@ -5,8 +5,6 @@ const NextClientApp = dynamic(() => import("../src/NextClientApp"), {
   ssr: false,
 });
 
-const CatchAllPage = () => {
+export default function IndexPage() {
   return <NextClientApp />;
-};
-
-export default CatchAllPage;
+}

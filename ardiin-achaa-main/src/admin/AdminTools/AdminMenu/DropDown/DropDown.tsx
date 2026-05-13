@@ -5,7 +5,7 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const DropDown = ({ id, title, content }) => {
+const DropDown = ({ id, title, content, icon }) => {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
 
@@ -31,19 +31,19 @@ const DropDown = ({ id, title, content }) => {
         return null;
       } else {
         return (
-          <li key={index} className="list-none">
+          <li key={index} className="list-none mt-1">
             <NavLink
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-2 rounded-md py-1.5 pl-8 pr-2 text-sm transition-colors",
+                  "relative flex min-h-[2.25rem] items-center gap-3 rounded-lg py-2 pl-10 pr-3 text-[14px] leading-snug transition-colors duration-150",
                   isActive
-                    ? "bg-primary/10 font-medium text-primary"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-muted/50 font-semibold text-foreground"
+                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                 )
               }
               to={`/admin/${id}${item.uri}`}
             >
-              <span className="text-lg leading-none text-primary/70">·</span>
+              <div className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30 shrink-0" aria-hidden />
               {item.name}
             </NavLink>
           </li>
@@ -55,19 +55,22 @@ const DropDown = ({ id, title, content }) => {
   if (!content) return null;
 
   return (
-    <Collapsible.Root open={open} onOpenChange={setOpen} className="space-y-1">
+    <Collapsible.Root open={open} onOpenChange={setOpen} className="space-y-1 mb-1">
       <Collapsible.Trigger
         className={cn(
-          "flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm font-medium transition-colors",
-          childActive()
-            ? "bg-muted text-foreground"
-            : "text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+          "flex w-full items-center justify-between rounded-lg py-[10px] px-3 text-left text-regular font-medium transition-colors",
+          childActive() 
+            ? "bg-muted font-semibold text-foreground" 
+            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
         )}
       >
-        <span>{title}</span>
+        <div className="flex items-center">
+          {icon}
+          <span className="leading-snug">{title}</span>
+        </div>
         <ChevronRight
           className={cn(
-            "h-4 w-4 shrink-0 transition-transform duration-200",
+            "h-[18px] w-[18px] shrink-0 text-muted-foreground transition-transform duration-200",
             open && "rotate-90"
           )}
           aria-hidden

@@ -64,7 +64,7 @@ const AdminHeader = () => {
   };
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header className="sticky top-0 z-20 border-b border-border/80 bg-card/90 shadow-[0_1px_0_0_rgb(0_0_0_/_0.04)] backdrop-blur-md supports-[backdrop-filter]:bg-card/75">
       <Modal
         visible={modalVisible}
         type="alert"
@@ -73,21 +73,21 @@ const AdminHeader = () => {
         onCancel={modalHandeleCancel}
       />
 
-      <div className="flex h-14 items-center justify-between gap-4 px-4 md:px-6">
+      <div className="flex h-14 items-center justify-between gap-4 px-4 sm:h-16 sm:px-6 md:px-8">
         <div className="min-w-0 flex-1">
-          <p className="truncate text-lg font-semibold tracking-tight text-foreground md:text-xl">
+          <p className="truncate text-regular font-semibold tracking-tight text-foreground">
             {headingOnChecker()}
           </p>
-          <p className="truncate text-xs text-muted-foreground md:text-sm">
+          <p className="truncate text-regular text-muted-foreground">
             Удирдлагын самбар
           </p>
         </div>
-        <Separator orientation="vertical" className="hidden h-8 md:block" />
+        <Separator orientation="vertical" className="hidden h-7 md:block" />
         <Button
           type="button"
-          variant="outline"
+          variant="ghost"
           size="sm"
-          className="shrink-0 gap-2"
+          className="shrink-0 gap-2 text-muted-foreground hover:bg-muted hover:text-foreground"
           onClick={signouBtnOnClick}
         >
           <LogOut className="h-4 w-4" aria-hidden />

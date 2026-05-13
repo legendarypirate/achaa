@@ -3,35 +3,35 @@
 
 .calculator {
   grid-area: calculator;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  width: 100%;
+  max-width: 100%;
   background-color: $second-color;
-  padding: 4rem 0;
+  padding: 4rem 1.6rem;
 
   &__title {
     color: white;
-    font-size: 2.4rem;
-
+    font-size: clamp(2rem, 4.5vw, 2.4rem);
     margin-top: 1rem;
+    text-align: center;
   }
 
   &__text {
     text-align: center;
     color: white;
-
     margin: 3rem 0;
+    max-width: 60rem;
+    font-size: clamp(1.4rem, 3.6vw, 1.6rem);
+    line-height: 1.55;
   }
 
   &__button {
     background-color: $primary-color;
     color: white;
-
     border: 2px solid $primary-color;
     border-radius: 1rem;
-
     padding: 1rem 4rem;
 
     &:hover {

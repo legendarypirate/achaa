@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../../Axios";
 import Modal from "../../../../tools/Modal/Modal";
+import { Button } from "@/components/ui/button";
 
 
 const CompanyProfileModal = ({ accountID, visible, onCancel }) => {
@@ -110,20 +111,18 @@ const CompanyProfileModal = ({ accountID, visible, onCancel }) => {
 
         <div className="companyProfileModal__btnContainer">
           {profile && (
-            <button
-              className="companyProfileModal__removeBtn"
+            <Button
+              type="button"
+              variant="destructive"
               onClick={() => setMessageVisible(true)}
             >
               Устгах
-            </button>
+            </Button>
           )}
 
-          <button
-            className="companyProfileModal__saveBtn"
-            onClick={saveOnClick}
-          >
+          <Button type="button" onClick={saveOnClick}>
             Хадгалах
-          </button>
+          </Button>
         </div>
       </div>
     </Modal>

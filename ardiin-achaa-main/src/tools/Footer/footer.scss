@@ -3,19 +3,20 @@
 
 .footer {
   display: grid;
-  grid-template-columns: minmax(1.6rem, 1fr) minmax(24rem, 32rem) minmax(26rem, 1fr) minmax(26rem, 1fr) minmax(1.6rem, 1fr);
+  grid-template-columns: minmax(1.6rem, 1fr) minmax(0, 32rem) minmax(0, 1fr) minmax(0, 1fr) minmax(1.6rem, 1fr);
   grid-template-rows:
     max-content
     max-content
     6rem
     max-content;
-
   grid-template-areas:
     ".  .       .       .       ."
     ".  map     social  contact ."
     ".  .       .       .       ."
     ".  bottom  bottom  bottom  .";
-
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   padding-top: 8rem;
   background: #ffffff;
   border-top: 1px solid #e5e7eb;
@@ -63,9 +64,8 @@
 
   &__map {
     grid-area: map;
-
-    width: 30rem;
-    height: 30rem;
+    width: min(30rem, 100%);
+    height: min(30rem, 70vw);
 
     @include respondTo(desktop-sm) {
       width: 20rem;

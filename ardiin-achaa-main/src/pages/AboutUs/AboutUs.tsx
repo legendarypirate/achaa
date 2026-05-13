@@ -6,6 +6,7 @@ import Picture2 from "../../assets/bidnii-tuhai2.png";
 import Picture3 from "../../assets/bidnii-tuhai3.png";
 import Picture4 from "../../assets/bidnii-tuhai4.png";
 import AboutUsText from "./AboutUsText";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
 
 
 const AboutUs = () => {
@@ -23,10 +24,10 @@ const AboutUs = () => {
     <div className="aboutUs">
       <div className="aboutUs__slick">
         <Slider {...settings} className="aboutUs__slick-slider">
-          <img src={Picture1} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
-          <img src={Picture2} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
-          <img src={Picture3} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
-          <img src={Picture4} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
+          <img src={staticAssetUrl(Picture1)} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
+          <img src={staticAssetUrl(Picture2)} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
+          <img src={staticAssetUrl(Picture3)} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
+          <img src={staticAssetUrl(Picture4)} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="aboutUs__slick-img" />
           <AboutUsText />
         </Slider>
       </div>

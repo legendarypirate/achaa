@@ -8,6 +8,7 @@ import TomorZam from "../../../assets/expressBack/tomor-zam.png";
 import OnlineShop from "../../../assets/expressBack/online-shop.png";
 import AgaariinTeever from "../../../assets/expressBack/agaariin-teever.png";
 import UlsHoorond from "../../../assets/expressBack/uls-hoorond.png";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 
 const EXPRESS_SERVICES = [
   {
@@ -69,7 +70,7 @@ const Express = () => {
           <Link key={item.to} to={item.to} className="express__card">
             <div className="express__card-media">
               <img
-                src={item.img}
+                src={staticAssetUrl(item.img)}
                 alt=""
                 loading="lazy"
                 onError={(e) => {
@@ -98,4 +99,4 @@ const Express = () => {
   );
 };
 
-export default Express;
+export default React.memo(Express);

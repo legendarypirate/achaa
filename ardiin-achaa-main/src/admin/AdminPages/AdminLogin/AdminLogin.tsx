@@ -82,30 +82,30 @@ const AdminLogin = () => {
           disableCloseBtn={false}
         />
 
-        <div className="flex min-h-screen items-center justify-center p-4">
-        <Card className="w-full max-w-md border-slate-800/80 bg-card/95 shadow-2xl backdrop-blur">
-          <CardHeader className="space-y-4 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
-              <Shield className="h-7 w-7" aria-hidden />
+        <div className="flex min-h-screen items-center justify-center p-4 sm:p-8">
+        <Card className="w-full max-w-2xl border-slate-800/80 bg-card/95 p-2 shadow-2xl backdrop-blur sm:p-4">
+          <CardHeader className="space-y-5 px-2 py-6 text-center sm:space-y-6 sm:px-4 sm:py-8">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg sm:h-20 sm:w-20">
+              <Shield className="h-8 w-8 sm:h-10 sm:w-10" aria-hidden />
             </div>
             <img
               src={staticAssetUrl(Logo)}
               alt="E-Achaa"
-              className="mx-auto h-12 w-auto object-contain"
+              className="mx-auto h-14 w-auto max-w-[min(20rem,85vw)] object-contain sm:h-20"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.style.display = "none";
               }}
             />
-            <div>
-              <CardTitle className="text-xl">Админ удирдлага</CardTitle>
+            <div className="space-y-2">
+              <CardTitle className="font-semibold">Админ удирдлага</CardTitle>
               <CardDescription className="text-muted-foreground">
                 Зөвхөн албан эрхтэй хэрэглэгч нэвтэрнэ үү.
               </CardDescription>
             </div>
           </CardHeader>
           <form onSubmit={loginOnClick}>
-            <CardContent className="grid gap-4">
+            <CardContent className="grid gap-5 px-2 sm:gap-6 sm:px-4">
               <div className="grid gap-2">
                 <Label htmlFor="admin-email">И-мэйл</Label>
                 <Input
@@ -113,6 +113,7 @@ const AdminLogin = () => {
                   type="email"
                   autoComplete="username"
                   placeholder="name@company.mn"
+                  className="h-12"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -125,17 +126,18 @@ const AdminLogin = () => {
                   type="password"
                   autoComplete="current-password"
                   placeholder="••••••••"
+                  className="h-12"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
             </CardContent>
-            <CardFooter className="flex flex-col gap-3">
-              <Button type="submit" className="w-full">
+            <CardFooter className="flex flex-col gap-4 px-2 pb-6 sm:px-4 sm:pb-8">
+              <Button type="submit" className="h-12 w-full">
                 Нэвтрэх
               </Button>
-              <p className="text-center text-xs text-muted-foreground">
+              <p className="text-center text-regular text-muted-foreground">
                 Энгийн гишүүд нүүр хуудасны &quot;Тавтай морил&quot; цонхоор нэвтэрнэ.
               </p>
             </CardFooter>

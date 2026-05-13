@@ -1,8 +1,8 @@
 // @ts-nocheck
-import "../src/admin/shadcn/globals.css";
+// Tailwind + shadcn tokens MUST load last: legacy SCSS uses broad `*` rules and would
+// otherwise override utility classes in the cascade.
 import "../src/app.scss";
 import "../src/admin/AdminPages/Academy/academyModal.scss";
-import "../src/admin/AdminPages/Dashboard/dashboard.scss";
 import "../src/admin/AdminPages/Dashboard/PieChart/pieChart.scss";
 import "../src/admin/AdminPages/IntroBanner/introBanner.scss";
 import "../src/admin/AdminPages/Invoice/invoiceModal.scss";
@@ -69,6 +69,7 @@ import "../src/tools/Modal/modal.scss";
 import "../src/tools/Tabs/tabs.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../src/admin/shadcn/globals.css";
 
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;

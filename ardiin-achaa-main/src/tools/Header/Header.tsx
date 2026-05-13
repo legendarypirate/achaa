@@ -11,6 +11,7 @@ import { BiSearch, BiMenu } from "react-icons/bi";
 import Axios from "../../Axios";
 import { TRANSPARENT_PIXEL_GIF } from "../../constants/media";
 import Logo from "../../assets/logo.png";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
 import Modal from "../Modal/Modal";
 import HeaderDrawerToggle from "./HeaderDrawerToggle/HeaderDrawerToggle";
 import SignUpModal from "./SignUpModal/SignUpModal";
@@ -21,9 +22,7 @@ const FALLBACK_LOGO_URL =
   "https://upload.wikimedia.org/wikipedia/commons/a/ad/Placeholder_no_text.svg";
 
 
-const Header = ({ userID, auth }) => {
-  const [loading, setLoading] = useState(true);
-
+const Header = ({ userID, auth, isLoaded }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [membership, setMembership] = useState(0);
@@ -40,31 +39,30 @@ const Header = ({ userID, auth }) => {
   const [showToggle, setShowToggle] = useState(false);
 
   useEffect(() => {
-    if (auth) {
-      Axios.get(`/accounts/getByID/${userID}`).then((res) => {
-        const { data } = res;
-
-        setFirstname(data.firstname);
-        setLastname(data.lastname);
-        setMembership(data.membership);
-        setConfirm(data.confirm);
-
-        const today = moment().format("YYYY-MM-DD");
-        const expired = moment(data.expired_date);
-
-        const minus = expired.diff(today, "days");
-        if (minus < 0) {
-          Axios.post("/accounts/finishExpired/", { userID }).then((res) => {
-            if (res.data.message === "success") {
-              setVisibleAlert(true);
-            }
-          });
-        }
-      });
+    if (!auth || !userID) {
+      return;
     }
 
-    const TIMER = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(TIMER);
+    Axios.get(`/accounts/getByID/${userID}`).then((res) => {
+      const { data } = res;
+
+      setFirstname(data.firstname);
+      setLastname(data.lastname);
+      setMembership(data.membership);
+      setConfirm(data.confirm);
+
+      const today = moment().format("YYYY-MM-DD");
+      const expired = moment(data.expired_date);
+
+      const minus = expired.diff(today, "days");
+      if (minus < 0) {
+        Axios.post("/accounts/finishExpired/", { userID }).then((res) => {
+          if (res.data.message === "success") {
+            setVisibleAlert(true);
+          }
+        });
+      }
+    });
   }, [userID, auth]);
 
   const membershipChecker = () => {
@@ -141,32 +139,34 @@ const Header = ({ userID, auth }) => {
   };
 
   const renderTopHeading = () => {
-    if (!loading) {
-      if (auth) {
-        return membershipChecker();
-      } else {
-        return (
-          <>
-            <button
-              onClick={() => {
-                setVisibleLogin(true);
-              }}
-              className="header__top-button"
-              to="/login"
-            >
-              Нэвтрэх
-            </button>
-            <p>/</p>
-            <button
-              onClick={() => setVisibleSignup(true)}
-              className="header__top-button"
-            >
-              Бүртгүүлэх
-            </button>
-          </>
-        );
-      }
+    if (!isLoaded) {
+      return <div className="header__top-placeholder" aria-hidden="true" />;
     }
+
+    if (auth) {
+      return membershipChecker();
+    }
+
+    return (
+      <>
+        <button
+          onClick={() => {
+            setVisibleLogin(true);
+          }}
+          className="header__top-button"
+          to="/login"
+        >
+          Нэвтрэх
+        </button>
+        <p>/</p>
+        <button
+          onClick={() => setVisibleSignup(true)}
+          className="header__top-button"
+        >
+          Бүртгүүлэх
+        </button>
+      </>
+    );
   };
 
   return (
@@ -231,7 +231,7 @@ const Header = ({ userID, auth }) => {
         <div className="header__down">
           <Link to="/" className="header__down-brand">
             <img
-              src={Logo}
+              src={staticAssetUrl(Logo)}
               className="header__down-logo"
               alt="E-Achaa"
               onError={(e) => {
@@ -327,7 +327,7 @@ const mapStateToProps = (state) => {
   return {
     userID: state.auth.userID,
     auth: state.auth.authenticate,
-    isLoading: state.auth.isLoading,
+    isLoaded: state.auth.isLoaded,
   };
 };
 

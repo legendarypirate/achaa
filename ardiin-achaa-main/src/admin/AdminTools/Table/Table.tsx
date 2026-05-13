@@ -22,7 +22,24 @@ import {
 import GlobalFilter from "./GlobalFilter";
 import Modal from "../../../tools/Modal/Modal";
 import CheckBox from "../../../tools/CheckBox/CheckBox";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 
+import {
+  Table as ShadcnTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "../../../components/ui/table";
+import { Button } from "@/components/ui/button";
+
+/** react-table puts `key` on prop objects; React 18+ requires `key` on the element, not inside spread. */
+function splitKey(props) {
+  if (!props) return { key: undefined, rest: {} };
+  const { key, ...rest } = props;
+  return { key, rest };
+}
 
 function RenderTable({
   data,
@@ -65,99 +82,132 @@ function RenderTable({
 
   const { globalFilter, pageIndex } = state;
 
+  const tableProps = splitKey(getTableProps());
+  const bodyProps = splitKey(getTableBodyProps());
+
   return (
-    <div className="rcTable">
-      <div className="rcTable__heading">
-        {disableAddBtn ? (
-          <div />
-        ) : (
-          <button onClick={() => showModalHandler(true)}>
-            <RiAddLine size={18} />
+    <div className="w-full space-y-6">
+      <div className="flex items-center justify-between">
+        {!disableAddBtn && (
+          <Button type="button" onClick={() => showModalHandler(true)} className="gap-2">
+            <RiAddLine className="h-4 w-4" aria-hidden />
             Нэмэх
-          </button>
+          </Button>
         )}
 
-        {disableSearch ? (
-          <div />
-        ) : (
-          <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+        {!disableSearch && (
+          <div className="ml-auto w-full max-w-md">
+            <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+          </div>
         )}
       </div>
 
-      <table {...getTableProps}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column, index) => (
-                <th key={index}>
-                  {column.render("Header")}
+      <div className="rounded-lg border border-border bg-white shadow-sm overflow-hidden">
+        <ShadcnTable {...tableProps.rest}>
+          <TableHeader className="bg-[#0B2545]">
+            {headerGroups.map((headerGroup) => {
+              const hg = splitKey(headerGroup.getHeaderGroupProps());
+              return (
+                <TableRow key={hg.key} {...hg.rest} className="hover:bg-[#0B2545] border-b-0">
+                  {headerGroup.headers.map((column, index) => {
+                    const colProps = splitKey(column.getHeaderProps(column.getSortByToggleProps()));
+                    return (
+                      <TableHead 
+                        key={index} 
+                        {...colProps.rest}
+                        className="h-14 px-4 text-[13px] font-semibold text-white uppercase tracking-wider border-r border-white/10 last:border-r-0"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <span>{column.render("Header")}</span>
+                          {column.isSorted ? (
+                            <span className="text-white/70">{column.isSortedDesc ? " 🔽" : " 🔼"}</span>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </TableHead>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableHeader>
+          <TableBody {...bodyProps.rest}>
+            {page.length > 0 ? (
+              page.map((row) => {
+                prepareRow(row);
+                const rp = splitKey(row.getRowProps());
+                return (
+                  <TableRow key={rp.key} {...rp.rest} className="transition-colors hover:bg-slate-50">
+                    {row.cells.map((cell) => {
+                      const cp = splitKey(cell.getCellProps());
+                      return (
+                        <TableCell 
+                          key={cp.key} 
+                          {...cp.rest}
+                          className="h-14 px-4 py-3 text-[14px] text-slate-700 border-r border-border/60 last:border-r-0 font-medium align-middle"
+                        >
+                          {cell.render("Cell")}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-32 text-center text-regular text-slate-500">
+                  Мэдээлэл олдсонгүй.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </ShadcnTable>
+      </div>
 
-                  {/* <div className="rcTable__header-search">
-                    {column.canFilter ? column.render("Filter") : null}
-                  </div> */}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps}>
-          {page.map((row) => {
-            prepareRow(row);
-
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-
-      {disablePagination || (
-        <div className="rcTable__pagination">
-          <span className="rcTable__pagination-text">
-            Хуудас{" "}
-            <strong>
-              {pageIndex + 1} / {pageOptions.length}
-            </strong>
-          </span>
-
-          <button
-            className="rcTable__pagination-btn1"
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-          >
-            {"<<"}
-          </button>
-          <button
-            className="rcTable__pagination-btn2"
-            onClick={() => {
-              previousPage();
-            }}
-            disabled={!canPreviousPage}
-          >
-            {"< Өмнөх"}
-          </button>
-          <button
-            className="rcTable__pagination-btn2"
-            onClick={() => {
-              nextPage();
-            }}
-            disabled={!canNextPage}
-          >
-            {"Дараах >"}
-          </button>
-          <button
-            className="rcTable__pagination-btn1"
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-          >
-            {">>"}
-          </button>
+      {!disablePagination && pageOptions.length > 0 && (
+        <div className="flex items-center justify-end space-x-2 py-4">
+          <div className="flex-1 text-regular text-muted-foreground">
+            Хуудас <span className="font-semibold text-foreground">{pageIndex + 1}</span> / {pageOptions.length}
+          </div>
+          <div className="space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => gotoPage(0)}
+              disabled={!canPreviousPage}
+              className="h-9 px-4"
+            >
+              {"<<"}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => previousPage()}
+              disabled={!canPreviousPage}
+              className="h-9 px-4"
+            >
+              {"Өмнөх"}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => nextPage()}
+              disabled={!canNextPage}
+              className="h-9 px-4"
+            >
+              {"Дараах"}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => gotoPage(pageCount - 1)}
+              disabled={!canNextPage}
+              className="h-9 px-4"
+            >
+              {">>"}
+            </Button>
+          </div>
         </div>
       )}
     </div>
@@ -247,13 +297,13 @@ function renderActions({
   let membershipIcon = null;
   let isMembership = false;
   if (data.confirm) {
-    membershipIcon = <RiCheckboxCircleLine size={23} color="green" />;
+    membershipIcon = <RiCheckboxCircleLine size={20} className="text-green-600" />;
   } else {
     if (data.membership > 0 && data.membership < 4) {
       isMembership = true;
-      membershipIcon = <RiNavigationFill size={23} color="blue" />;
+      membershipIcon = <RiNavigationFill size={20} className="text-blue-600" />;
     } else {
-      membershipIcon = <RiCloseCircleLine size={23} color="red" />;
+      membershipIcon = <RiCloseCircleLine size={20} className="text-destructive" />;
     }
   }
 
@@ -264,15 +314,6 @@ function renderActions({
     }
   };
 
-  // let partnerIcon = null;
-  // let isPartner = false;
-  // if (data.confirm) {
-  //   partnerIcon = <RiCheckboxCircleLine size={23} color="green" />;
-  // } else {
-  //   isPartner = true;
-  //   partnerIcon = <RiNavigationFill size={23} color="blue" />;
-  // }
-
   const partnerConfirmOnClick = () => {
     openConfirmAlert(data);
     setAlertMsgType("confirm");
@@ -280,9 +321,9 @@ function renderActions({
 
   let confBtnText = "";
   if (newStatusID === 3) {
-    confBtnText = <p>зөвшөөрөх</p>;
+    confBtnText = "зөвшөөрөх";
   } else if (newStatusID === 4) {
-    confBtnText = <p>батлах</p>;
+    confBtnText = "батлах";
   }
 
   const reqConfirmOnClick = () => {
@@ -294,111 +335,122 @@ function renderActions({
 
   return (
     <div
-      className={`rcTable__actionsContainer ${
-        disableDeleteIcon || disableEditIcon
-          ? "rcTable__actionsContainer--disabledButton"
-          : null
+      className={`flex items-center gap-1.5 ${
+        disableDeleteIcon || disableEditIcon ? "opacity-80" : ""
       }`}
     >
-      {disableEditIcon || (
-        <button
+      {!disableEditIcon && (
+        <Button
+          variant="ghost"
+          size="icon"
           key="edit"
+          className="h-8 w-8 text-muted-foreground hover:text-foreground"
           onClick={() => {
             setID(data.id);
             showModalHandler(true);
           }}
         >
-          <BiEdit size={23} />
-        </button>
+          <BiEdit size={18} />
+        </Button>
       )}
 
-      {disableDeleteIcon || (
-        <button
+      {!disableDeleteIcon && (
+        <Button
+          variant="ghost"
+          size="icon"
           key="delete"
+          className="h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
           onClick={() => {
             openDeleteAlert(data);
             setAlertMsgType("delete");
           }}
         >
-          <BiTrash size={23} color="red" />
-        </button>
+          <BiTrash size={18} />
+        </Button>
       )}
 
       {enableMemberConfirm && (
-        <button key="memberConfirm" onClick={memberConfirmOnClick}>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="h-8 w-8"
+          key="memberConfirm" 
+          onClick={memberConfirmOnClick}
+        >
           {membershipIcon}
-        </button>
+        </Button>
       )}
 
       {enablePartnerConfirm && (
-        <button key="partnerConfirm" onClick={partnerConfirmOnClick}>
-          <RiCheckboxCircleLine size={23} color="orange" />
-        </button>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="h-8 w-8 text-orange-500 hover:text-orange-600 hover:bg-orange-500/10"
+          key="partnerConfirm" 
+          onClick={partnerConfirmOnClick}
+        >
+          <RiCheckboxCircleLine size={20} />
+        </Button>
       )}
 
       {enablEpriceOffer && (
-        <button
-          key="request"
-          style={{
-            cursor: "pointer",
-            borderRadius: 10,
-            color: "blue",
-          }}
-          // onClick={() => {
-          //   setID(data.id);
-          //   setUserCode(data.user_code);
-          //   showInvoiceHandler(true);
-          // }}
+        <Button
+          variant="link"
+          size="sm"
+          key="priceOffer"
+          className="h-8 px-2 text-blue-600 hover:text-blue-700"
         >
-          <p>Үнийн санал</p>
-        </button>
+          Үнийн санал
+        </Button>
       )}
 
       {enableRequest && (
-        <button
+        <Button
+          variant="link"
+          size="sm"
           key="request"
-          style={{
-            cursor: "pointer",
-            borderRadius: 10,
-            color: "blue",
-          }}
+          className="h-8 px-2 text-blue-600 hover:text-blue-700"
           onClick={() => {
             setID(data.id);
             showModalHandler(true);
           }}
         >
-          <p>Ачаа өгөх</p>
-        </button>
+          Ачаа өгөх
+        </Button>
       )}
 
       {enableInvoice && (
-        <button
+        <Button
+          variant="link"
+          size="sm"
           key="invoice"
-          style={{
-            cursor: "pointer",
-            borderRadius: 10,
-            color: "blue",
-          }}
+          className="h-8 px-2 text-blue-600 hover:text-blue-700"
           onClick={() => {
             setID(data.id);
             setUserCode(data.user_code);
             showInvoiceHandler(true);
           }}
         >
-          <p>нэхэмжлэл</p>
-        </button>
+          нэхэмжлэл
+        </Button>
       )}
 
       {enableCheckBox && (
-        <button key="checkbox" onClick={() => getChoseData(data)}>
+        <div key="checkbox" onClick={() => getChoseData(data)} className="cursor-pointer p-1">
           <CheckBox />
-        </button>
+        </div>
       )}
 
       {newStatusID && (
-        <button key="reqConfirm" onClick={() => reqConfirmOnClick(newStatusID)}>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          key="reqConfirm" 
+          className="h-8"
+          onClick={() => reqConfirmOnClick(newStatusID)}
+        >
           {confBtnText}
-        </button>
+        </Button>
       )}
     </div>
   );
@@ -452,11 +504,16 @@ const Table = ({
             photo: (
               <img
                 style={{ width: 100 }}
-                src={res.data[i].image ? res.data[i].image : NoImage}
-                alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
+                src={
+                  res.data[i].image
+                    ? res.data[i].image
+                    : staticAssetUrl(NoImage)
+                }
+                alt="no file"
                 onError={(event) => {
-                  event.target.onerror = null;
-                  event.target.src = NoFile;
+                  const el = event.currentTarget;
+                  el.onerror = null;
+                  el.src = staticAssetUrl(NoFile);
                 }}
               />
             ),

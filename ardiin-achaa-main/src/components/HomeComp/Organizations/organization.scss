@@ -3,19 +3,18 @@
 
 .organizaton {
   grid-area: organization;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @include respondTo(mobile) {
-    display: none;
-  }
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1.6rem;
 
   &__title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     text-align: center;
+    line-height: 1.25;
   }
 
   &__para {
@@ -24,42 +23,44 @@
 
     &-text {
       margin-top: 0.6rem;
+      font-size: clamp(1.4rem, 3.6vw, 1.6rem);
+      line-height: 1.55;
     }
   }
 
   &__slick {
     width: 100%;
-
+    max-width: 100%;
     padding: 1rem 0;
+    contain: layout paint;
 
-    @include respondTo(mobile) {
-      width: 80%;
+    &--static {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+      justify-items: center;
     }
 
     &-img {
-      width: 16rem;
-      height: 16rem;
-
+      width: min(16rem, 70vw);
+      height: min(16rem, 70vw);
       object-fit: contain;
-
       border-radius: 2rem;
       padding: 0 1rem;
+      margin: 0 auto;
     }
   }
 
   &__link {
     background-color: $primary-color;
     color: white;
-
     border: 1px solid white;
     border-radius: 1rem;
-
     padding: 1rem 4rem;
 
     &:hover {
       background-color: white;
       color: $primary-color;
-
       border: 1px solid $primary-color;
     }
   }

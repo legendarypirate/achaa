@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import HaanLogo from "../../../../assets/haan-bank-logo.png";
 import QPayLogo from "../../../../assets/qpay-logo.png";
 import Axios from "../../../../Axios";
+import { staticAssetUrl } from "../../../../utils/staticAssetUrl";
 import Modal from "../../../../tools/Modal/Modal";
 
 
@@ -164,7 +165,7 @@ const DebitModal = ({
               <figure className="debitModal__pay-accNumber-fig">
                 <img
                   className="debitModal__pay-accNumber-fig-logo"
-                  src={HaanLogo}
+                  src={staticAssetUrl(HaanLogo)}
                   alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
                 />
               </figure>
@@ -180,7 +181,7 @@ const DebitModal = ({
               <figure className="debitModal__pay-qpay-fig">
                 <img
                   className="debitModal__pay-qpay-fig-logo"
-                  src={QPayLogo}
+                  src={staticAssetUrl(QPayLogo)}
                   alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
                 />
               </figure>

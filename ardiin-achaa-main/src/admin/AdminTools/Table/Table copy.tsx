@@ -22,7 +22,13 @@ import {
 import GlobalFilter from "./GlobalFilter";
 import Modal from "../../../tools/Modal/Modal";
 import CheckBox from "../../../tools/CheckBox/CheckBox";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 
+function splitKey(props) {
+  if (!props) return { key: undefined, rest: {} };
+  const { key, ...rest } = props;
+  return { key, rest };
+}
 
 function RenderTable({
   data,
@@ -65,6 +71,9 @@ function RenderTable({
 
   const { globalFilter, pageIndex } = state;
 
+  const tableProps = splitKey(getTableProps());
+  const bodyProps = splitKey(getTableBodyProps());
+
   return (
     <div className="rcTable">
       <div className="rcTable__heading">
@@ -85,32 +94,39 @@ function RenderTable({
         )}
       </div>
 
-      <table {...getTableProps}>
+      <table key={tableProps.key} {...tableProps.rest}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column, index) => (
-                <th key={index}>
-                  <div className="rcTable__header-title">
-                    {column.render("Header")}
-                  </div>
-                  <div className="rcTable__header-search">
-                    {/* {column.canFilter ? column.render("Filter") : null} */}
-                  </div>
-                </th>
-              ))}
-            </tr>
-          ))}
+          {headerGroups.map((headerGroup) => {
+            const hg = splitKey(headerGroup.getHeaderGroupProps());
+            return (
+              <tr key={hg.key} {...hg.rest}>
+                {headerGroup.headers.map((column, index) => (
+                  <th key={index}>
+                    <div className="rcTable__header-title">
+                      {column.render("Header")}
+                    </div>
+                    <div className="rcTable__header-search">
+                      {/* {column.canFilter ? column.render("Filter") : null} */}
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            );
+          })}
         </thead>
-        <tbody {...getTableBodyProps}>
+        <tbody key={bodyProps.key} {...bodyProps.rest}>
           {page.map((row) => {
             prepareRow(row);
+            const rp = splitKey(row.getRowProps());
 
             return (
-              <tr {...row.getRowProps()}>
+              <tr key={rp.key} {...rp.rest}>
                 {row.cells.map((cell) => {
+                  const cp = splitKey(cell.getCellProps());
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td key={cp.key} {...cp.rest}>
+                      {cell.render("Cell")}
+                    </td>
                   );
                 })}
               </tr>
@@ -399,11 +415,16 @@ const Table = ({
             photo: (
               <img
                 style={{ width: 100 }}
-                src={res.data[i].image ? res.data[i].image : NoImage}
-                alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
+                src={
+                  res.data[i].image
+                    ? res.data[i].image
+                    : staticAssetUrl(NoImage)
+                }
+                alt="no file"
                 onError={(event) => {
-                  event.target.onerror = null;
-                  event.target.src = NoFile;
+                  const el = event.currentTarget;
+                  el.onerror = null;
+                  el.src = staticAssetUrl(NoFile);
                 }}
               />
             ),

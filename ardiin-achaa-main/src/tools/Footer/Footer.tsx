@@ -11,6 +11,7 @@ import {
 } from "react-icons/ri";
 import Logo from "../../assets/logo.png";
 import Map from "../../assets/map.png";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
 
 const FALLBACK_LOGO_URL =
   "https://upload.wikimedia.org/wikipedia/commons/a/ad/Placeholder_no_text.svg";
@@ -23,7 +24,7 @@ const Footer = () => {
     <footer className="footer">
       <img
         className="footer__map"
-        src={Map}
+        src={staticAssetUrl(Map)}
         alt="no file"
         onError={(e) => {
           const el = e.currentTarget;
@@ -41,7 +42,7 @@ const Footer = () => {
         <div className="footer__social-heading">
           <img
             className="footer__social-heading-logo"
-            src={Logo}
+            src={staticAssetUrl(Logo)}
             alt="no file"
             onError={(e) => {
               const el = e.currentTarget;

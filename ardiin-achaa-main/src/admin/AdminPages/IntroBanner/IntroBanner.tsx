@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../Axios";
 import FileUploader from "../../AdminTools/FileUploader/FileUploader";
+import { Button } from "@/components/ui/button";
 
 type IntroBannerItem = {
   file_url?: string;
@@ -85,12 +86,9 @@ const IntroBanner = () => {
           getFile={setHomeDataFile}
           video
         />
-        <button
-          className="introBanner__box-saveBtn"
-          onClick={() => saveOnClick("homeVideo")}
-        >
+        <Button type="button" onClick={() => saveOnClick("homeVideo")}>
           хадгалах
-        </button>
+        </Button>
       </div>
 
       <div className="introBanner__box">
@@ -100,23 +98,17 @@ const IntroBanner = () => {
           getFile={setAcademyVideoFile}
           video
         />
-        <button
-          className="introBanner__box-saveBtn"
-          onClick={() => saveOnClick("academyVideo")}
-        >
+        <Button type="button" onClick={() => saveOnClick("academyVideo")}>
           хадгалах
-        </button>
+        </Button>
       </div>
 
       <div className="introBanner__box">
         <h3 className="introBanner__box-title">Баннер:</h3>
         <FileUploader file={bannerData.file_url} getFile={setBannerFile} />
-        <button
-          className="introBanner__box-saveBtn"
-          onClick={() => saveOnClick("banner")}
-        >
+        <Button type="button" onClick={() => saveOnClick("banner")}>
           хадгалах
-        </button>
+        </Button>
       </div>
     </div>
   );

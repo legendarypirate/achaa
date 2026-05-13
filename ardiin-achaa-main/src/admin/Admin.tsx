@@ -35,7 +35,7 @@ const Admin = () => {
 
   return (
     <div id="admin-shadcn-root">
-      <div className="flex min-h-screen w-full bg-slate-100 text-slate-900 antialiased">
+      <div className="flex min-h-screen w-full bg-muted/40 text-foreground antialiased">
         <AdminMenu
           profileVisible={profileVisible}
           setProfileVisible={setProfileVisible}
@@ -46,10 +46,10 @@ const Admin = () => {
             setProfileVisible={setProfileVisible}
           />
           <main
-            className="flex min-h-0 flex-1 flex-col overflow-auto p-4 md:p-6"
+            className="flex min-h-0 flex-1 flex-col overflow-auto p-3 sm:p-4 md:p-6"
             onClick={() => setProfileVisible(false)}
           >
-            <div className="mx-auto w-full max-w-[1600px] flex-1 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm md:p-6">
+            <div className="flex min-h-0 w-full max-w-none flex-1 flex-col rounded-2xl border border-border/80 bg-card p-5 shadow-sm ring-1 ring-black/[0.03] sm:p-6 md:p-8">
               <Routes>
                 <Route
                   path="/"

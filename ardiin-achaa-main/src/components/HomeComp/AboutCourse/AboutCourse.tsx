@@ -1,22 +1,24 @@
 // @ts-nocheck
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "../../../Axios";
 
 
-const AboutCourse = () => {
-  const videoRef = useRef();
+const AboutCourse = ({ shouldAutoplayVideo = false }) => {
   const [academyVideo, setAcademyVideo] = useState("");
 
   useEffect(() => {
     let isMounted = true;
-    videoRef.current?.load();
 
-    Axios.get("/introBanner/getByType/academyVideo").then((res) => {
-      if (isMounted) {
-        setAcademyVideo(res.data.file_url);
-      }
-    });
+    Axios.get("/introBanner/getByType/academyVideo")
+      .then((res) => {
+        if (isMounted) {
+          setAcademyVideo(res.data?.file_url || "");
+        }
+      })
+      .catch(() => {
+        /* API unreachable in dev — avoid unhandled rejection */
+      });
 
     return () => {
       isMounted = false;
@@ -27,13 +29,14 @@ const AboutCourse = () => {
     <div className="course">
       <video
         className="course__video"
-        ref={videoRef}
         controls
-        autoPlay
+        autoPlay={shouldAutoplayVideo}
         loop
         muted
+        playsInline
+        preload="metadata"
       >
-        <source src={academyVideo} />
+        {academyVideo ? <source src={academyVideo} /> : null}
       </video>
 
       <div className="course__para">
@@ -51,4 +54,4 @@ const AboutCourse = () => {
   );
 };
 
-export default AboutCourse;
+export default React.memo(AboutCourse);

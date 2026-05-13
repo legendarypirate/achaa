@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { RiArrowLeftLine, RiGlobalLine, RiPhoneLine } from "react-icons/ri";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 
 const webHref = (web) => {
   if (!web || typeof web !== "string") return "#";
@@ -347,7 +348,7 @@ const PartnerRequest = () => {
       <div className="partnerRequest__hero">
         <img
           className="partnerRequest__hero-bg"
-          src={image}
+          src={staticAssetUrl(image)}
           alt=""
           onError={onImgError}
         />
@@ -379,7 +380,7 @@ const PartnerRequest = () => {
                 <figure className="partnerRequest__card-fig">
                   <img
                     className="partnerRequest__card-logo"
-                    src={item.logo}
+                    src={staticAssetUrl(item.logo)}
                     alt=""
                     onError={onImgError}
                   />

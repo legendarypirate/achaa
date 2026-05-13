@@ -4,6 +4,7 @@ import moment from "moment";
 import Axios from "../../../../Axios";
 import Modal from "../../../../tools/Modal/Modal";
 import FileUploader from "../../../AdminTools/FileUploader/FileUploader";
+import { Button } from "@/components/ui/button";
 
 
 const TransPimpModal = ({ id, visible, onCancel }) => {
@@ -274,9 +275,7 @@ const TransPimpModal = ({ id, visible, onCancel }) => {
           </div>
         </div>
 
-        <button className="partnerModals__saveBtn" type="submit">
-          Хадгалах
-        </button>
+        <Button type="submit">Хадгалах</Button>
       </form>
     </Modal>
   );

@@ -6,6 +6,7 @@ import Modal from "../../../tools/Modal/Modal";
 import FileUploader from "../../AdminTools/FileUploader/FileUploader";
 import moment from "moment";
 import Input from "../../../tools/Input/Input";
+import { Button } from "@/components/ui/button";
 
 
 const AcademyModal = ({ id, visible, onCancel }) => {
@@ -103,9 +104,9 @@ const AcademyModal = ({ id, visible, onCancel }) => {
           />
         </div>
 
-        <button className="academyModal__saveBtn" onClick={saveOnClick}>
+        <Button type="button" onClick={saveOnClick}>
           Хадгалах
-        </button>
+        </Button>
       </div>
     </Modal>
   );

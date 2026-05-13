@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "../../../Axios";
 import Modal from "../../../tools/Modal/Modal";
 import FileUploader from "../../AdminTools/FileUploader/FileUploader";
+import { Button } from "@/components/ui/button";
 
 
 const InvoiceModal = ({ adminID, userCode, packageID, visible, onCancel }) => {
@@ -78,12 +79,9 @@ const InvoiceModal = ({ adminID, userCode, packageID, visible, onCancel }) => {
             />
           </div>
 
-          <button
-            className="invoiceModal__content-sendBtn"
-            onClick={sendOnClick}
-          >
+          <Button type="button" onClick={sendOnClick}>
             {data.id ? "Хадгалах" : "Илгээх"}
-          </button>
+          </Button>
         </div>
       </div>
     </Modal>

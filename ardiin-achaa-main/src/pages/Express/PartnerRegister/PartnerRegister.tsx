@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Helper from "../../../assets/helper.png";
 import Axios from "../../../Axios";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 import Modal from "../../../tools/Modal/Modal";
 import Input from "../../../tools/Input/Input";
 
@@ -333,7 +334,7 @@ const PartnerRegister = () => {
             <b className="partnerRegister__right-help-title">Тусламж хэсэг</b>
 
             <img
-              src={Helper}
+              src={staticAssetUrl(Helper)}
               alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
               className="partnerRegister__right-help-img"
             />

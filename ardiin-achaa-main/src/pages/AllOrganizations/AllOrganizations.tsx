@@ -11,6 +11,7 @@ import Partner8Logo from "../../assets/withCompany/partner8-logo.png";
 import Partner9Logo from "../../assets/withCompany/partner9-logo.png";
 import Partner10Logo from "../../assets/withCompany/partner10-logo.png";
 import Partner11Logo from "../../assets/withCompany/partner11-logo.png";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
 
 
 const AllOrganizations = () => {
@@ -24,66 +25,66 @@ const AllOrganizations = () => {
         <p className="allOrganizations__container-para">
           МАНАЙ СИСТЕМИЙН ҮНДСЭН ҮҮРЭГ БОЛ БҮГДИЙГ НЭГ ДОР ЦУГЦУУЛЖ, НЭГДСЭН
           МЭДЭЭЛЛЭЭР ХАНГАХ
-          <p className="allOrganizations__container-para-text">
+          <span className="allOrganizations__container-para-text">
             Энэхүү нээлттэй платформын амин сүнс нь тээврийн салбарын бүхий л
             шатны мэргэжлийн байгууллага хүвь хүмүүс билээ.
-          </p>
+          </span>
         </p>
 
         <div className="allOrganizations__container-banners">
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner1Logo}
+            src={staticAssetUrl(Partner1Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner2Logo}
+            src={staticAssetUrl(Partner2Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner3Logo}
+            src={staticAssetUrl(Partner3Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner4Logo}
+            src={staticAssetUrl(Partner4Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner5Logo}
+            src={staticAssetUrl(Partner5Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner6Logo}
+            src={staticAssetUrl(Partner6Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner7Logo}
+            src={staticAssetUrl(Partner7Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner8Logo}
+            src={staticAssetUrl(Partner8Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner9Logo}
+            src={staticAssetUrl(Partner9Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner10Logo}
+            src={staticAssetUrl(Partner10Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
           <img
             className="allOrganizations__container-banners-img"
-            src={Partner11Logo}
+            src={staticAssetUrl(Partner11Logo)}
             alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
           />
         </div>

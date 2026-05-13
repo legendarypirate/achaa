@@ -38,6 +38,9 @@
   top: 0;
   z-index: 100;
   background: #ffffff;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 
   &__topContainer {
     display: grid;
@@ -50,6 +53,12 @@
       $second-color 100%
     );
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    @include respondTo(tablet) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "top";
+      grid-template-rows: auto;
+    }
   }
 
   &__downContainer {
@@ -59,6 +68,11 @@
     grid-template-areas: ".  down  .";
     box-shadow: 0 0.4rem 1.6rem rgba(15, 23, 42, 0.06);
     border-bottom: 1px solid #e5e7eb;
+
+    @include respondTo(tablet) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "down";
+    }
   }
 
   &__top {
@@ -68,9 +82,23 @@
     align-items: center;
     gap: 0.8rem;
     font-size: 1.3rem;
+    min-width: 0;
+
+    &-placeholder {
+      min-width: 12rem;
+      min-height: 2.6rem;
+      flex-shrink: 0;
+    }
 
     @include respondTo(desktop-sm) {
       padding: 0 0.4rem;
+    }
+
+    @include respondTo(tablet) {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      row-gap: 0.4rem;
+      padding: 0.6rem 1.2rem;
     }
 
     &-info {
@@ -160,9 +188,14 @@
     gap: 1.6rem;
     min-height: 5.6rem;
     padding: 0.6rem 0;
+    min-width: 0;
 
     @include respondTo(desktop-sm) {
       padding: 0.6rem 0.4rem;
+    }
+
+    @include respondTo(tablet) {
+      padding: 0.6rem 1.2rem;
     }
   }
 

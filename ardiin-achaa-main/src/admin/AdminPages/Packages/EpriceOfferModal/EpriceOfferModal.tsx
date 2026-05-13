@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Axios from "../../../Axios";
 import Modal from "../../../tools/Modal/Modal";
 import Input from "../../../tools/Input/Input";
+import { Button } from "@/components/ui/button";
 
 
 const EpriceOfferModal = ({ visible, onCancel }) => {
@@ -52,9 +53,9 @@ const EpriceOfferModal = ({ visible, onCancel }) => {
           хоног
         </div>
 
-        <button className="epriceOfferModal__sendBtn" onClick={sendOnClick}>
+        <Button type="button" onClick={sendOnClick}>
           Илгээх
-        </button>
+        </Button>
       </div>
     </Modal>
   );

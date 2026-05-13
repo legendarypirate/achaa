@@ -1,7 +1,9 @@
 // @ts-nocheck
-import { React, useEffect, useRef, useState } from "react";
+import { React, useCallback, useEffect, useState } from "react";
 import OpenPlatform from "../../assets/open-platform.png";
 import Axios from "../../Axios";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 import Modal from "../../tools/Modal/Modal";
 
 import Express from "../../components/HomeComp/Express/Express";
@@ -12,20 +14,28 @@ import Calculator from "../../components/HomeComp/Calculator/Calculator";
 
 
 const Home = () => {
-  const videoRef = useRef();
-
   const [homeVideo, setHomeVideo] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const isCoarsePointer = useMediaQuery("(pointer: coarse)");
+  const isNarrowScreen = useMediaQuery("(max-width: 768px)");
+  const shouldAutoplayVideo = !isCoarsePointer && !isNarrowScreen;
+
+  const closeModal = useCallback(() => {
+    setModalVisible(false);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
-    videoRef.current?.load();
 
-    Axios.get("/introBanner/getByType/homeVideo").then((res) => {
-      if (isMounted) {
-        setHomeVideo(res.data.file_url);
-      }
-    });
+    Axios.get("/introBanner/getByType/homeVideo")
+      .then((res) => {
+        if (isMounted) {
+          setHomeVideo(res.data?.file_url || "");
+        }
+      })
+      .catch(() => {
+        /* API unreachable in dev — avoid unhandled rejection */
+      });
 
     return () => {
       isMounted = false;
@@ -53,35 +63,32 @@ const Home = () => {
           >
             Дэлгэрэнгүй
           </button>
-          <Modal visible={modalVisible} onCancel={() => setModalVisible(false)}>
+          <Modal visible={modalVisible} onCancel={closeModal}>
             <img
               className="home__face-info-modalIMG"
-              src={OpenPlatform}
+              src={staticAssetUrl(OpenPlatform)}
               alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
             />
           </Modal>
         </div>
 
-        {homeVideo ? (
-          <video
-            className="home__face-video"
-            ref={videoRef}
-            controls
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-          >
-            <source src={homeVideo} />
-          </video>
-        ) : null}
+        <video
+          className="home__face-video"
+          controls
+          autoPlay={shouldAutoplayVideo}
+          loop
+          muted
+          playsInline
+          preload="metadata"
+        >
+          {homeVideo ? <source src={homeVideo} /> : null}
+        </video>
       </div>
 
       <Express />
-      <Banner />
-      <AboutCourse />
-      <Organization />
+      <Banner isNarrowScreen={isNarrowScreen} />
+      <AboutCourse shouldAutoplayVideo={shouldAutoplayVideo} />
+      <Organization isNarrowScreen={isNarrowScreen} />
       <Calculator />
     </main>
   );

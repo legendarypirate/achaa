@@ -12,7 +12,8 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 1.6rem;
+  box-sizing: border-box;
 
   &__intro {
     text-align: center;
@@ -67,17 +68,19 @@
     color: inherit;
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 
-    &:hover {
-      transform: translateY(-0.35rem);
-      box-shadow: 0 1.2rem 2.8rem rgba(15, 23, 42, 0.12);
-      border-color: rgba(234, 51, 71, 0.25);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: translateY(-0.35rem);
+        box-shadow: 0 1.2rem 2.8rem rgba(15, 23, 42, 0.12);
+        border-color: rgba(234, 51, 71, 0.25);
 
-      .express__card-media img {
-        transform: scale(1.04);
-      }
+        .express__card-media img {
+          transform: scale(1.04);
+        }
 
-      .express__card-title {
-        color: $primary-color;
+        .express__card-title {
+          color: $primary-color;
+        }
       }
     }
 

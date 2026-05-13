@@ -37,17 +37,13 @@ export const fetchAuth = () => {
       },
     })
       .then((res) => {
-        // const id = parseInt(String(window.location.pathname).split("/")[2]);
-
         if (res.data.error === 409 || res.data.error === 404) {
           window.localStorage.removeItem(tokenName);
-        } else {
-          dispatch(fetchAuthSuccess(res.data));
+          dispatch(fetchAuthFail());
+          return;
         }
 
-        // if (id && id !== res.data.user.id) {
-        //   window.location.replace("/admin");
-        // }
+        dispatch(fetchAuthSuccess(res.data));
       })
       .catch((error) => {
         dispatch(fetchAuthFail(error));

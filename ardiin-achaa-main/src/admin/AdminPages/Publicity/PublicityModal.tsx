@@ -4,6 +4,7 @@ import Axios from "../../../Axios";
 import Modal from "../../../tools/Modal/Modal";
 import FileUploader from "../../AdminTools/FileUploader/FileUploader";
 import Input from "../../../tools/Input/Input";
+import { Button } from "@/components/ui/button";
 
 
 const PublicityModal = ({ id, visible, onCancel }) => {
@@ -64,9 +65,9 @@ const PublicityModal = ({ id, visible, onCancel }) => {
           <Input name="text" value={data.text} onChange={onChangeHandler} />
         </div>
 
-        <button className="publicityModal__saveBtn" onClick={saveOnClick}>
+        <Button type="button" onClick={saveOnClick}>
           Хадгалах
-        </button>
+        </Button>
       </div>
     </Modal>
   );

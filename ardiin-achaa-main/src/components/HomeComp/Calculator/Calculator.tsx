@@ -33,4 +33,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default React.memo(Calculator);

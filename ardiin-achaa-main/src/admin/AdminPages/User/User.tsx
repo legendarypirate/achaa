@@ -5,6 +5,7 @@ import moment from "moment";
 import NoImage from "../../../assets/no-image.jpg";
 import NoFile from "../../../assets/no-file.jpg";
 import Table from "../../AdminTools/Table/Table";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 import UserModal from "./UserModal";
 
 const User = () => {
@@ -79,11 +80,12 @@ const User = () => {
               borderRadius: 60,
               objectFit: "cover",
             }}
-            src={value ? value : NoImage}
-            alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
+            src={value ? value : staticAssetUrl(NoImage)}
+            alt="no file"
             onError={(event) => {
-              event.target.onerror = null;
-              event.target.src = NoFile;
+              const el = event.currentTarget;
+              el.onerror = null;
+              el.src = staticAssetUrl(NoFile);
             }}
           />
         );

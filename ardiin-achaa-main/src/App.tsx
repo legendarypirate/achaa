@@ -29,16 +29,12 @@ import PartnerRegister from "./pages/Express/PartnerRegister/PartnerRegister";
 
 
 function App(props) {
-  const [device, setDevice] = useState("");
+  const [device] = useState(() =>
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ? "mobile" : "web"
+  );
 
   useEffect(() => {
     props.onFetchAuth();
-
-    if (/Android|iPhone/i.test(navigator.userAgent)) {
-      setDevice("mobile");
-    } else {
-      setDevice("web");
-    }
     // Intentionally run once on mount. `[props]` re-ran on every Redux update because
     // connect() passes a new props object each time, causing endless /accounts/authenticate
     // requests and a browser tab that never stops "loading".

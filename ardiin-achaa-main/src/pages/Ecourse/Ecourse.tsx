@@ -5,6 +5,7 @@ import { BsCameraVideoFill, BsFillPlayCircleFill } from "react-icons/bs";
 import htmlParser from "html-react-parser";
 import Teacher from "../../assets/teacher.jpg";
 import Axios from "../../Axios";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
 
 
 const Ecourse = () => {
@@ -30,7 +31,7 @@ const Ecourse = () => {
             <div className="ecourse__set-content-teacher">
               <img
                 className="ecourse__set-content-teacher-pic"
-                src={Teacher}
+                src={staticAssetUrl(Teacher)}
                 alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
               />
               <label className="ecourse__set-content-teacher-name">Б.Бат</label>

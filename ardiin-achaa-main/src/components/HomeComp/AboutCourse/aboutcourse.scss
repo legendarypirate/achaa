@@ -3,14 +3,16 @@
 
 .course {
   grid-area: aboutcourse;
-
   display: flex;
   align-items: center;
   gap: 4rem;
+  width: 100%;
+  max-width: 100%;
 
   @include respondTo(desktop-sm) {
     padding: 0 2rem 0 4rem;
   }
+
   @include respondTo(tablet) {
     flex-direction: column;
     gap: 2rem;
@@ -18,45 +20,43 @@
   }
 
   &__video {
-    width: 60rem;
-    height: fit-content;
-
-    @include respondTo(mobile) {
-      width: 100%;
-      padding: 0 2rem;
-    }
+    width: 100%;
+    max-width: 60rem;
+    height: auto;
   }
 
   &__para {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 100%;
+    min-width: 0;
 
     @include respondTo(tablet) {
       align-items: center;
       gap: 1rem;
-
       text-align: center;
     }
 
     &-title {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.25;
+    }
+
+    &-text {
+      font-size: clamp(1.4rem, 3.6vw, 1.6rem);
+      line-height: 1.55;
     }
 
     &-link {
-      width: 20rem;
-
+      width: min(20rem, 100%);
       display: flex;
       justify-content: center;
-
       text-decoration: none;
-
       background-color: $primary-color;
       color: white;
-
       border: 1px solid white;
       border-radius: 1rem;
-
       padding: 1.5rem 4rem;
 
       &:hover {

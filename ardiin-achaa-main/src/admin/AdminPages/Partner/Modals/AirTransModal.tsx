@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../../Axios";
 import Modal from "../../../../tools/Modal/Modal";
+import { Button } from "@/components/ui/button";
 
 
 const AirTransModal = ({ id, visible, onCancel }) => {
@@ -338,9 +339,7 @@ const AirTransModal = ({ id, visible, onCancel }) => {
           </div>
         </div>
 
-        <button className="partnerModals__saveBtn" type="submit">
-          Хадгалах
-        </button>
+        <Button type="submit">Хадгалах</Button>
       </form>
     </Modal>
   );

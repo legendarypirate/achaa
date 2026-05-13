@@ -6,6 +6,7 @@ import Modal from "../../../tools/Modal/Modal";
 import FileUploader from "../../AdminTools/FileUploader/FileUploader";
 import Input from "../../../tools/Input/Input";
 import CKeditor from "../../AdminTools/CKeditor/CKeditor";
+import { Button } from "@/components/ui/button";
 
 
 const NewsModal = ({ id, visible, onCancel }) => {
@@ -118,9 +119,9 @@ const NewsModal = ({ id, visible, onCancel }) => {
           <CKeditor setText={info} setCKEditorData={(val) => setInfo(val)} />
         </div>
 
-        <button className="newsModal__saveBtn" onClick={saveOnClick}>
+        <Button type="button" onClick={saveOnClick}>
           Хадгалах
-        </button>
+        </Button>
       </div>
     </Modal>
   );

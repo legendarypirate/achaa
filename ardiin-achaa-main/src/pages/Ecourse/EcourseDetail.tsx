@@ -7,6 +7,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import DecoupledEditor from "@ckeditor/ckeditor5-build-decoupled-document";
 import Teacher from "../../assets/teacher.jpg";
 import Axios from "../../Axios";
+import { staticAssetUrl } from "../../utils/staticAssetUrl";
 
 
 const EcourseDetail = () => {
@@ -63,7 +64,7 @@ const EcourseDetail = () => {
       <div className="eCourseDetail__teacher">
         <img
           className="eCourseDetail__teacher-pic"
-          src={Teacher}
+          src={staticAssetUrl(Teacher)}
           alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }}
         />
         <label className="eCourseDetail__teacher-name">

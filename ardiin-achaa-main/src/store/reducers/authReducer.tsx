@@ -21,7 +21,9 @@ const fetchAuthSuccess = (state, action) => {
 };
 
 const fetchAuthFail = (state, action) => {
-  return updateObject(state);
+  return updateObject(state, {
+    isLoaded: true,
+  });
 };
 
 const authReducer = (state = initialState, action) => {

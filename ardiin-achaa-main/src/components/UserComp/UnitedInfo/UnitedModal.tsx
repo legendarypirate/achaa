@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Helper from "../../../assets/helper.png";
 import Axios from "../../../Axios";
+import { staticAssetUrl } from "../../../utils/staticAssetUrl";
 import Input from "../../../tools/Input/Input";
 import Modal from "../../../tools/Modal/Modal";
 
@@ -69,7 +70,7 @@ const UnitedModal = ({ id, visible, onCancel }) => {
       />
       <div className="united">
         <div className="united__body">
-          <img src={Helper} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="united__body-logo" />
+          <img src={staticAssetUrl(Helper)} alt="no file" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/600x400?text=No+Image"; }} className="united__body-logo" />
 
           <div className="united__body-info">
             <h3 className="united__body-info-text">Компанийн нэр</h3>
